@@ -1,3 +1,5 @@
+import shutil
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -135,6 +137,7 @@ def setup(request):
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
+    shutil.rmtree(user_data_dir, ignore_errors=True)
 
 # ------------------------------------------------------------------
 #  Login Fixture
