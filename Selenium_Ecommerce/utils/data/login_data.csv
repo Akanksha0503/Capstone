@@ -1,0 +1,5 @@
+email,password,expected
+admin@yourstore.com,admin,Pass
+invalid@invalid.com,wrong,Fail
+,admin,Fail
+admin@yourstore.com,,Fail

@@ -1,0 +1,27 @@
+<data>
+    <record>
+        <order_id>1</order_id>
+        <last_name>Gates</last_name>
+        <email>steve_gates@nopCommerce.com</email>
+        <expected>Pass</expected>
+    </record>
+    <record>
+        <order_id>2</order_id>
+        <last_name>Lindgren</last_name>
+        <email>brenda_lindgren@nopCommerce.com</email>
+        <expected>Pass</expected>
+    </record>
+    <record>
+        <order_id>99</order_id>
+        <last_name>Unknown</last_name>
+        <email>none@invalid.com</email>
+        <expected>Fail</expected>
+    </record>
+    <record>
+        <order_id>9999</order_id>
+        <last_name>Nonexistent</last_name>
+        <email>missing@example.com</email>
+        <expected>Fail</expected>
+    </record>
+</data>
+

@@ -1,0 +1,22 @@
+<products>
+    <product>
+        <product_name>Build your own computer</product_name>
+        <expected>Pass</expected>
+    </product>
+    <product>
+        <product_name>Nike Floral Print Tee</product_name>
+        <expected>Pass</expected>
+    </product>
+    <product>
+        <product_name>Nonexistent Product</product_name>
+        <expected>Fail</expected>
+    </product>
+    <product>
+        <product_name>Apple MacBook Pro 13-inch</product_name>
+        <expected>Pass</expected>
+    </product>
+    <product>
+        <product_name>Adidas Shoes</product_name>
+        <expected>Pass</expected>
+    </product>
+</products>

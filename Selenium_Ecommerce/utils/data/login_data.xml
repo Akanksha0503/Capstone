@@ -1,0 +1,25 @@
+<logins>
+  <login>
+    <email>admin@yourstore.com</email>
+    <password>admin</password>
+    <expected>Pass</expected>
+  </login>
+
+  <login>
+    <email>invalid@invalid.com</email>
+    <password>wrong</password>
+    <expected>Fail</expected>
+  </login>
+
+  <login>
+    <email></email>
+    <password>admin</password>
+    <expected>Fail</expected>
+  </login>
+
+  <login>
+    <email>admin@yourstore.com</email>
+    <password></password>
+    <expected>Fail</expected>
+  </login>
+</logins>
