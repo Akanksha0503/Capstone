@@ -26,16 +26,20 @@ jobs:
         pip install -r requirements.txt || true
         pip install pytest selenium allure-pytest webdriver-manager pytest-xdist pytest-rerunfailures pytest-html
 
-    # ✅ FIXED: Manual Allure CLI install (works on Ubuntu 24.04+)
+    #  FIXED: Manual Allure CLI install (works on Ubuntu 24.04+)
     - name: Install Allure CLI
       run: |
-        sudo apt install unzip wget -y
-        wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.30.0.zip
-        sudo unzip -o allure-2.30.0.zip -d /opt/
-        sudo ln -s /opt/allure-2.30.0/bin/allure /usr/bin/allure
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        # Get the latest Allure version dynamically
+        LATEST_ALLURE_URL=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest | grep "browser_download_url.*zip" | cut -d '"' -f 4)
+        echo "Downloading Allure from: $LATEST_ALLURE_URL"
+        wget -O allure.zip "$LATEST_ALLURE_URL"
+        unzip allure.zip -d /opt/allure
+        sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
         allure --version
 
-    # ✅ Run Selenium Tests
+    #  Run Selenium Tests
     - name: Run Selenium tests with HTML and Allure reports
       run: |
         pytest Selenium_Ecommerce/tests/test_login.py -v -s \
@@ -43,7 +47,7 @@ jobs:
           --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results \
           --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
 
-    # ✅ Upload raw allure results
+    #  Upload raw allure results
     - name: Upload Allure Results
       uses: actions/upload-artifact@v4
       if: always()
@@ -51,7 +55,7 @@ jobs:
         name: allure-results
         path: Selenium_Ecommerce/Output/reports/report-login/allure-results
 
-    # ✅ Upload pytest HTML report
+    #  Upload pytest HTML report
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
       if: always()
