@@ -54,15 +54,14 @@ def setup(request):
 
     if browser.lower() == "chrome":
         options = ChromeOptions()
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--user-data-dir=/tmp/selenium_profile")
         if headless:
             options.add_argument("--headless=new")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--disable-extensions")
-            options.add_argument("--disable-infobars")
-            options.add_argument("--window-size=1920,1080")
-            options.add_argument("--headless=new")
+
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
@@ -73,14 +72,10 @@ def setup(request):
 
     elif browser.lower() == "firefox":
         options = FirefoxOptions()
+        options.add_argument("--width=1920")
+        options.add_argument("--height=1080")
+        options.add_argument("--disable-gpu")
         if headless:
-            options.add_argument("--headless=new")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--disable-extensions")
-            options.add_argument("--disable-infobars")
-            options.add_argument("--window-size=1920,1080")
             options.add_argument("--headless")
 
         driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
@@ -93,15 +88,15 @@ def setup(request):
 
     elif browser.lower() == "edge":
         options = EdgeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-infobars")
+        options.add_argument("--window-size=1920,1080")
         if headless:
             options.add_argument("--headless=new")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--disable-extensions")
-            options.add_argument("--disable-infobars")
-            options.add_argument("--window-size=1920,1080")
-            options.add_argument("--headless=new")
+
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
