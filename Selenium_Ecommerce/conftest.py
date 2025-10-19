@@ -56,6 +56,13 @@ def setup(request):
         options = ChromeOptions()
         if headless:
             options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-extensions")
+            options.add_argument("--disable-infobars")
+            options.add_argument("--window-size=1920,1080")
+            options.add_argument("--headless=new")
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
@@ -67,6 +74,13 @@ def setup(request):
     elif browser.lower() == "firefox":
         options = FirefoxOptions()
         if headless:
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-extensions")
+            options.add_argument("--disable-infobars")
+            options.add_argument("--window-size=1920,1080")
             options.add_argument("--headless")
 
         driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
@@ -80,6 +94,13 @@ def setup(request):
     elif browser.lower() == "edge":
         options = EdgeOptions()
         if headless:
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-extensions")
+            options.add_argument("--disable-infobars")
+            options.add_argument("--window-size=1920,1080")
             options.add_argument("--headless=new")
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
