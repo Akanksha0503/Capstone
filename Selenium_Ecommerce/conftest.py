@@ -65,8 +65,6 @@ def setup(request):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--window-size=1920,1080")
-        user_data_dir = tempfile.mkdtemp()
-        options.add_argument(f"--user-data-dir={user_data_dir}")
         if headless:
             options.add_argument("--headless=new")
 
@@ -117,8 +115,7 @@ def setup(request):
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-infobars")
         options.add_argument("--window-size=1920,1080")
-        user_data_dir = tempfile.mkdtemp()
-        options.add_argument(f"--user-data-dir={user_data_dir}")
+
         if headless:
             options.add_argument("--headless=new")
 
@@ -138,7 +135,6 @@ def setup(request):
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
-    shutil.rmtree(user_data_dir, ignore_errors=True)
 
 # ------------------------------------------------------------------
 #  Login Fixture
