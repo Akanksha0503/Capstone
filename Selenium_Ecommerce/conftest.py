@@ -83,7 +83,7 @@ def setup(request):
         options.add_argument("--width=1920")
         options.add_argument("--height=1080")
         options.add_argument("--disable-gpu")
-        user_data_dir = tempfile.mkdtemp()
+        user_data_dir = tempfile.mkdtemp()  # create a unique temp directory
         options.add_argument(f"--user-data-dir={user_data_dir}")
         if headless:
             options.add_argument("--headless")
@@ -137,7 +137,6 @@ def setup(request):
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
-    shutil.rmtree(user_data_dir, ignore_errors=True)
 
 # ------------------------------------------------------------------
 #  Login Fixture
