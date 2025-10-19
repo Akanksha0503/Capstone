@@ -7,6 +7,9 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
 from Selenium_Ecommerce.pages.LoginPage import LoginPage
 from Selenium_Ecommerce.pages.DashboardPage import DashboardPage
 
@@ -78,13 +81,25 @@ def setup(request):
         if headless:
             options.add_argument("--headless")
 
-        driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
-
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
-            else webdriver.Firefox(service=FirefoxService(driver_path), options=options)
+            else webdriver.Firefox(
+                service=FirefoxService(GeckoDriverManager().install()), options=options
+            )
         )
+        # if headless:
+        #     options.add_argument("--headless")
+        #
+        # driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
+        #
+        # driver = (
+        #     webdriver.Remote(command_executor=GRID_URL, options=options)
+        #     if use_grid
+        #     else webdriver.Firefox(
+        #         service=FirefoxService(driver_path), options=options
+        #     )
+        # )
 
     elif browser.lower() == "edge":
         options = EdgeOptions()
@@ -101,7 +116,8 @@ def setup(request):
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
             else webdriver.Edge(
-                service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
+                #service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
+                service=EdgeService(EdgeChromiumDriverManager().install()), options=options
             )
         )
 
