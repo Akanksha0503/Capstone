@@ -1,4 +1,5 @@
 name: Capstone Project Tests
+
 on:
   push:
     branches: [ main, develop ]
@@ -14,7 +15,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # Set up Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -26,25 +26,32 @@ jobs:
         pip install -r requirements.txt || true
         pip install pytest selenium allure-pytest webdriver-manager pytest-xdist pytest-rerunfailures pytest-html
 
+    # ✅ FIXED: Manual Allure CLI install (works on Ubuntu 24.04+)
     - name: Install Allure CLI
       run: |
-        sudo apt-add-repository ppa:qameta/allure -y
-        sudo apt-get update
-        sudo apt-get install allure -y
+        sudo apt install unzip wget -y
+        wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.30.0.zip
+        sudo unzip -o allure-2.30.0.zip -d /opt/
+        sudo ln -s /opt/allure-2.30.0/bin/allure /usr/bin/allure
+        allure --version
 
+    # ✅ Run Selenium Tests
     - name: Run Selenium tests with HTML and Allure reports
       run: |
-        pytest Selenium_Ecommerce/tests/test_login/py -v -s \
-        --clean-alluredir
-        --Selenium_Ecommerce/Output/reports/report-login/allure-results \
-        --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
-    # Upload raw allure results
+        pytest Selenium_Ecommerce/tests/test_login.py -v -s \
+          --clean-alluredir \
+          --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results \
+          --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
+
+    # ✅ Upload raw allure results
     - name: Upload Allure Results
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: allure-results
-        path: Selenium_Ecommerce/Output/reports/report-order/allure-results
+        path: Selenium_Ecommerce/Output/reports/report-login/allure-results
+
+    # ✅ Upload pytest HTML report
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
       if: always()
@@ -55,29 +62,21 @@ jobs:
 
     - name: Generate Allure Report
       run: |
-        allure generate Selenium_Ecommerce/Output/reports/report-login/allure-results -o  Selenium_Ecommerce/Output/reports/report-login/allure-report --clean
-
-#    - name: Upload test results
- #     uses: actions/upload-artifact@v4  # CHANGED FROM v3 to v4
-  #    if: always()
-   #   with:
-    #    name: test-results
-     #   path: test-results/
-      #  retention-days: 7
+        allure generate Selenium_Ecommerce/Output/reports/report-login/allure-results \
+          -o Selenium_Ecommerce/Output/reports/report-login/allure-report --clean
 
     - name: Upload Allure report
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: allure-report
-        path: Selenium_Ecommerce/Output/reports/report-order/allure-report
+        path: Selenium_Ecommerce/Output/reports/report-login/allure-report
         retention-days: 7
 
-  #  New job: Deploy allure-report to GitHub Pages
   deploy-allure:
     needs: selenium-tests
     runs-on: ubuntu-latest
-    if: always() # ensures it runs even if tests fail
+    if: always()
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
