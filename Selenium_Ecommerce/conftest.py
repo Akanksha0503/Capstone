@@ -20,7 +20,7 @@ GRID_URL = "http://localhost:4444/wd/hub"
 #  Pytest CLI options
 # ------------------------------------------------------------------
 import tempfile
-user_data_dir = tempfile.mkdtemp()
+
 
 
 def pytest_addoption(parser):
@@ -63,6 +63,7 @@ def setup(request):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--window-size=1920,1080")
+        user_data_dir = tempfile.mkdtemp()
         options.add_argument(f"--user-data-dir={user_data_dir}")
         if headless:
             options.add_argument("--headless=new")
@@ -80,7 +81,7 @@ def setup(request):
         options.add_argument("--width=1920")
         options.add_argument("--height=1080")
         options.add_argument("--disable-gpu")
-
+        user_data_dir = tempfile.mkdtemp()
         options.add_argument(f"--user-data-dir={user_data_dir}")
         if headless:
             options.add_argument("--headless")
@@ -113,7 +114,7 @@ def setup(request):
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-infobars")
         options.add_argument("--window-size=1920,1080")
-
+        user_data_dir = tempfile.mkdtemp()
         options.add_argument(f"--user-data-dir={user_data_dir}")
         if headless:
             options.add_argument("--headless=new")
