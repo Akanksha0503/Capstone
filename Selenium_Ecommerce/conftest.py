@@ -21,7 +21,7 @@ GRID_URL = "http://localhost:4444/wd/hub"
 # ------------------------------------------------------------------
 #  Pytest CLI options
 # ------------------------------------------------------------------
-import tempfile
+
 
 
 
@@ -81,8 +81,6 @@ def setup(request):
         options.add_argument("--width=1920")
         options.add_argument("--height=1080")
         options.add_argument("--disable-gpu")
-        user_data_dir = tempfile.mkdtemp(prefix="selenium_profile_")# create a unique temp directory
-        options.add_argument(f"--user-data-dir={user_data_dir}")
 
         if headless:
             options.add_argument("--headless")

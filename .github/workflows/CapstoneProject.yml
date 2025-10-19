@@ -23,8 +23,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install webdriver manager
         pip install -r requirements.txt || true
         pip install pytest selenium allure-pytest webdriver-manager pytest-xdist pytest-rerunfailures pytest-html openpyxl
+
+    - name: Install Chrome
+      run: |
+        sudo apt update
+        sudo apt install -y google-chrome-stable
 
     #  FIXED: Manual Allure CLI install (works on Ubuntu 24.04+)
     - name: Install Allure CLI
@@ -42,7 +48,7 @@ jobs:
     #  Run Selenium Tests
     - name: Run Selenium tests with HTML and Allure reports
       run: |
-        pytest Selenium_Ecommerce/tests/test_login.py -v -s --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
+        pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
 
     #  Upload raw allure results
     - name: Upload Allure Results
