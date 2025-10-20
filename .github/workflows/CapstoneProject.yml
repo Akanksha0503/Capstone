@@ -46,6 +46,10 @@ jobs:
           unzip allure.zip -d /opt/allure
           sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
           allure --version
+      # token
+      - name: Set WDM token
+        run: echo "WDM_GITHUB_TOKEN=${{ secrets.WDM_GITHUB_TOKEN }}" >> $GITHUB_ENV
+
 
       # 6️⃣ Run Selenium tests
       - name: Run Selenium tests

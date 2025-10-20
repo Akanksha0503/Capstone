@@ -28,13 +28,11 @@ GRID_URL = "http://localhost:4444/wd/hub"
 
 
 # Set GitHub token to avoid API rate limits when downloading GeckoDriver
-# Set the token from environment, or fallback to None
-github_token = os.getenv("WDM_GITHUB_TOKEN")
-
-if github_token:
-    os.environ["WDM_GITHUB_TOKEN"] = github_token
-
-
+#WDM_GITHUB_TOKEN = "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"
+import os
+token = os.getenv("WDM_GITHUB_TOKEN")
+if token:
+    os.environ["WDM_GITHUB_TOKEN"] = token
 
 def pytest_addoption(parser):
     parser.addoption(
