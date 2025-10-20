@@ -1,0 +1,14 @@
+<customers>
+  <customer>
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <email>john@example.com</email>
+    <password>password123</password>
+  </customer>
+  <customer>
+    <first_name>Jane</first_name>
+    <last_name>Smith</last_name>
+    <email>jane@example.com</email>
+    <password>password123</password>
+  </customer>
+</customers>

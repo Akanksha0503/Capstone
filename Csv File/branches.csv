@@ -1,0 +1,11 @@
+branch_code,branch_name,city,state,ifsc_code
+BR001,Main Branch Ludhiana,Ludhiana,Punjab,INB000
+BR002,West Branch Navi Mumbai,Navi Mumbai,Maharashtra,INB001
+BR003,South Branch Kalyan-Dombivli,Kalyan-Dombivli,Maharashtra,INB002
+BR004,East Branch Faridabad,Faridabad,Haryana,INB003
+BR005,South Branch Vadodara,Vadodara,Gujarat,INB004
+BR006,East Branch Vadodara,Vadodara,Gujarat,INB005
+BR007,Central Branch Gwalior,Gwalior,Madhya Pradesh,INB006
+BR008,South Branch Agra,Agra,Uttar Pradesh,INB007
+BR009,Main Branch Jabalpur,Jabalpur,Madhya Pradesh,INB008
+BR010,South Branch Mumbai,Mumbai,Maharashtra,INB009

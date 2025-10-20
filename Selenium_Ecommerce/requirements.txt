@@ -1,0 +1,8 @@
+selenium
+pytest
+pytest-xdist
+allure-pytest # For Excel
+pytest-html
+webdriver-manager
+openpyxl
+pytest-rerunfailures

@@ -1,0 +1,8 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"15","","0","Customer Module","0","0","Search by Role","0"
+"6","","0","Customer Module","0","0","Search by Last Name","0"
+"6","","0","Customer Module","0","0","Search by First Name","0"
+"0","","0","","0","1","","0"
+"6","","0","Customer Module","0","0","Add Customer via File Data (CSV/XLSX/XML)","0"
+"3","","0","Customer Module","0","0","Search by Email","0"
+"3","","0","Customer Module","0","0","Add Randomly Generated Customer","0"

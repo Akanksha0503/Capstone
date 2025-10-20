@@ -1,0 +1,37 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","7350","test_add_customer_from_user[edge]","tests","Fri Oct 17 23:23:37 IST 2025","passed","Fri Oct 17 23:23:44 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","15001","test_add_customer[firefox-case1]","tests","Fri Oct 17 23:19:22 IST 2025","passed","Fri Oct 17 23:19:37 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","4904","test_add_customer_from_user[firefox]","tests","Fri Oct 17 23:23:01 IST 2025","passed","Fri Oct 17 23:23:05 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","10247","test_add_customer[chrome-case1]","tests","Fri Oct 17 23:18:00 IST 2025","passed","Fri Oct 17 23:18:10 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","5982","test_add_customer[chrome-case0]","tests","Fri Oct 17 23:17:09 IST 2025","passed","Fri Oct 17 23:17:15 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","14212","test_add_customer[edge-case1]","tests","Fri Oct 17 23:21:21 IST 2025","passed","Fri Oct 17 23:21:36 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","15266","test_add_customer[firefox-case0]","tests","Fri Oct 17 23:18:43 IST 2025","passed","Fri Oct 17 23:18:58 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","22563","test_add_customer[edge-case0]","tests","Fri Oct 17 23:20:22 IST 2025","passed","Fri Oct 17 23:20:44 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","8076","test_add_customer_from_user[chrome]","tests","Fri Oct 17 23:22:26 IST 2025","passed","Fri Oct 17 23:22:34 IST 2025","TestAddCustomer","test_custadd","",""
