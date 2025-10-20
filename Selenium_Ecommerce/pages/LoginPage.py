@@ -3,6 +3,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from Selenium_Ecommerce.modules.BaseModule import BaseModule
 
+from selenium.webdriver.support import expected_conditions as EC
+
 
 class LoginPage(BaseModule):
     EMAIL_FIELD = (By.ID, "Email")
@@ -20,6 +22,7 @@ class LoginPage(BaseModule):
 
     def login(self, email, password):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "Email"))).clear()
         print(f" Trying login: {email} / {password}")
         self.enter_text(*self.EMAIL_FIELD, email)
         self.enter_text(*self.PASSWORD_FIELD, password)

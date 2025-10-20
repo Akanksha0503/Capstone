@@ -124,8 +124,8 @@ def setup(request):
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
             else webdriver.Edge(
-                service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
-                #service=EdgeService(EdgeChromiumDriverManager().install()), options=options
+                #service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
+                service=EdgeService(EdgeChromiumDriverManager().install()), options=options
             )
         )
 
