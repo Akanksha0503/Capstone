@@ -1,0 +1,6 @@
+product_name,expected
+Build your own computer,Pass
+Nike,Pass
+Nonexistent Product,Fail
+Apple MacBook Pro,Pass
+Adidas,Pass

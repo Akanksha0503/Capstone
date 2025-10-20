@@ -1,0 +1,51 @@
+customer_id,name,gender,date_of_birth,city,state,phone_number,email,branch_code,account_type,account_balance
+1,Arjun Desai,M,1979-02-19,Jabalpur,Madhya Pradesh,9249294781,arjun.desai@example.com,BR010,Savings,97038.05
+2,Amit Verma,M,1990-03-15,Kolkata,West Bengal,9659373151,amit.verma@example.com,BR006,Savings,45280.53
+3,Prakash Jain,M,1988-08-10,Ghaziabad,Uttar Pradesh,9513534604,prakash.jain@example.com,BR009,Savings,86015.02
+4,Geeta Singh,F,1997-03-04,Delhi,Delhi,9420973566,geeta.singh@example.com,BR009,Fixed Deposit,56250.36
+5,Sameer Shah,M,1976-06-13,Surat,Gujarat,9287920768,sameer.shah@example.com,BR002,Savings,95402.13
+6,Pooja Saxena,F,2000-12-13,Kanpur,Uttar Pradesh,9182143016,pooja.saxena@example.com,BR009,Savings,84781.54
+7,Sunita Desai,F,1967-09-18,Delhi,Delhi,9780044823,sunita.desai@example.com,BR005,Savings,43281.05
+8,Lakshmi Kumar,F,2004-06-22,Dhanbad,Jharkhand,9507934275,lakshmi.kumar@example.com,BR008,Current,91965.45
+9,Abhishek Nath,M,1974-02-05,Mysore,Karnataka,9831553563,abhishek.nath@example.com,BR007,Current,24918.94
+10,Radha Yadav,F,1998-05-09,Nashik,Maharashtra,9530458357,radha.yadav@example.com,BR009,Fixed Deposit,63459.70
+11,Lakshmi Singh,F,2000-11-10,Pune,Maharashtra,9311510613,lakshmi.singh@example.com,BR007,Fixed Deposit,33386.64
+12,Meera Verma,F,1982-11-25,Dhanbad,Jharkhand,9867203669,meera.verma@example.com,BR002,Current,7213.65
+13,Geeta Kapoor,F,1968-07-12,Pimpri-Chinchwad,Maharashtra,9854578089,geeta.kapoor@example.com,BR010,Fixed Deposit,34627.01
+14,Arjun Gupta,M,1982-05-21,Guwahati,Assam,9525083311,arjun.gupta@example.com,BR007,Savings,56178.46
+15,Mohan Reddy,M,1979-04-28,Srinagar,Jammu and Kashmir,9929720233,mohan.reddy@example.com,BR009,Savings,69409.12
+16,Prakash Sharma,M,1972-07-25,Nagpur,Maharashtra,9587565423,prakash.sharma@example.com,BR007,Savings,67525.73
+17,Prakash Mehta,M,1999-04-27,Rajkot,Gujarat,9993686052,prakash.mehta@example.com,BR009,Fixed Deposit,16480.55
+18,Arjun Patel,M,1976-01-31,Bangalore,Karnataka,9570437123,arjun.patel@example.com,BR006,Current,95340.93
+19,Madhuri Nair,F,1991-08-18,Mysore,Karnataka,9490652821,madhuri.nair@example.com,BR001,Savings,70760.79
+20,Vikram Yadav,M,2002-01-19,Vadodara,Gujarat,9584891402,vikram.yadav@example.com,BR007,Current,2126.81
+21,Amit Agarwal,M,1970-10-17,Madurai,Tamil Nadu,9911207529,amit.agarwal@example.com,BR003,Current,91757.81
+22,Amit Patel,M,1988-02-29,Ahmedabad,Gujarat,9398009314,amit.patel@example.com,BR003,Fixed Deposit,20159.58
+23,Asha Reddy,F,2004-04-15,Lucknow,Uttar Pradesh,9180505106,asha.reddy@example.com,BR008,Fixed Deposit,86241.56
+24,Harish Rao,M,1977-09-28,Ludhiana,Punjab,9737196434,harish.rao@example.com,BR010,Fixed Deposit,74434.08
+25,Ravi Nath,M,1999-10-08,Pimpri-Chinchwad,Maharashtra,9170389718,ravi.nath@example.com,BR001,Fixed Deposit,96034.10
+26,Ritu Kapoor,F,1977-11-18,Kalyan-Dombivli,Maharashtra,9460227740,ritu.kapoor@example.com,BR008,Current,65092.56
+27,Nisha Nair,F,1974-08-07,Kota,Rajasthan,9256310424,nisha.nair@example.com,BR007,Current,17377.91
+28,Ajay Gupta,M,1967-04-08,Meerut,Uttar Pradesh,9967901605,ajay.gupta@example.com,BR003,Fixed Deposit,67936.43
+29,Gaurav Kumar,M,1998-03-30,Navi Mumbai,Maharashtra,9861206820,gaurav.kumar@example.com,BR002,Savings,99757.39
+30,Amit Malhotra,M,1998-11-25,Aurangabad,Maharashtra,9202985363,amit.malhotra@example.com,BR007,Current,67331.88
+31,Sita Desai,F,1991-04-04,Kota,Rajasthan,9282928350,sita.desai@example.com,BR007,Current,62978.91
+32,Suresh Mehta,M,1971-07-27,Patna,Bihar,9259097421,suresh.mehta@example.com,BR010,Current,67684.02
+33,Ravi Nath,M,1998-06-10,Surat,Gujarat,9179577100,ravi.nath@example.com,BR001,Savings,6710.83
+34,Priya Nath,F,1972-03-26,Ranchi,Jharkhand,9176769237,priya.nath@example.com,BR004,Fixed Deposit,8525.73
+35,Kiran Malhotra,F,1978-07-09,Indore,Madhya Pradesh,9124069477,kiran.malhotra@example.com,BR002,Current,53670.52
+36,Rahul Reddy,M,1994-07-25,Patna,Bihar,9952300455,rahul.reddy@example.com,BR003,Fixed Deposit,73729.05
+37,Neha Saxena,F,1985-03-14,Vasai-Virar,Maharashtra,9336676333,neha.saxena@example.com,BR002,Savings,14270.13
+38,Rekha Jain,F,1968-05-04,Visakhapatnam,Andhra Pradesh,9368102107,rekha.jain@example.com,BR008,Fixed Deposit,15712.27
+39,Vishal Rao,M,1970-08-26,Hubli-Dharwad,Karnataka,9350251940,vishal.rao@example.com,BR009,Savings,56127.39
+40,Swati Kumar,F,1974-09-16,Aurangabad,Maharashtra,9173755609,swati.kumar@example.com,BR003,Savings,10681.78
+41,Asha Sharma,F,1989-11-13,Agra,Uttar Pradesh,9275784316,asha.sharma@example.com,BR009,Fixed Deposit,53966.27
+42,Rekha Rao,F,1991-05-18,Navi Mumbai,Maharashtra,9993443069,rekha.rao@example.com,BR003,Savings,91050.26
+43,Deepak Kapoor,M,1975-11-27,Hubli-Dharwad,Karnataka,9979788713,deepak.kapoor@example.com,BR009,Fixed Deposit,33061.72
+44,Sita Singh,F,1998-09-25,Ghaziabad,Uttar Pradesh,9121942348,sita.singh@example.com,BR001,Savings,33582.08
+45,Vinod Iyer,M,2000-10-15,Solapur,Maharashtra,9953105546,vinod.iyer@example.com,BR008,Fixed Deposit,82190.75
+46,Rani Iyer,F,1972-07-01,Agra,Uttar Pradesh,9184650463,rani.iyer@example.com,BR002,Fixed Deposit,87359.13
+47,Sanjay Kapoor,M,1983-08-30,Cochin,Kerala,9203733753,sanjay.kapoor@example.com,BR007,Fixed Deposit,42887.55
+48,Rekha Nair,F,1995-09-02,Chandigarh,Chandigarh,9856856506,rekha.nair@example.com,BR009,Fixed Deposit,13906.57
+49,Usha Desai,F,1985-12-18,Solapur,Maharashtra,9951092158,usha.desai@example.com,BR007,Fixed Deposit,13993.74
+50,Nitin Bansal,M,1982-07-13,Mumbai,Maharashtra,9719247379,nitin.bansal@example.com,BR003,Savings,33241.78

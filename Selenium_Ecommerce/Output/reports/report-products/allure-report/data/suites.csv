@@ -1,0 +1,74 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Verifies customer search by Role.","0","test_search_by_role[chrome-case4]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[firefox-case3]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[firefox-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[firefox-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[edge-case2]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[chrome-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[edge-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[chrome-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verify admin can log in successfully.","0","test_valid_admin_login[chrome]","","Sun Oct 19 07:58:48 IST 2025","skipped","Sun Oct 19 07:58:48 IST 2025","","","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[edge-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[edge-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[edge-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Role.","0","test_search_by_role[edge-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[chrome-case2]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Verifies that a customer can be found by registered email.
+","0","test_search_by_email[firefox-admin@yourstore.com]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[chrome-case3]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[chrome-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[firefox-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[edge-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[edge-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[firefox-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[edge-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","0","test_add_customer_from_user[edge]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Role.","0","test_search_by_role[firefox-case2]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[chrome-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Role.","0","test_search_by_role[chrome-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","0","test_search_by_first_name[chrome-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[edge-case4]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[firefox-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[chrome-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Verifies that a customer can be found by registered email.
+","0","test_search_by_email[chrome-admin@yourstore.com]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[firefox-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","0","test_search_by_role[firefox-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","0","test_add_customer_from_user[firefox]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Last Name.","0","test_search_by_last_name[chrome-case1]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","0","test_add_customer[firefox-case0]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Role.","0","test_search_by_role[firefox-case4]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Verifies that a customer can be found by registered email.
+","0","test_search_by_email[edge-admin@yourstore.com]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","0","test_add_customer_from_user[chrome]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:47 IST 2025","broken","Sun Oct 19 07:58:47 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Role.","0","test_search_by_role[edge-case3]","Selenium_Ecommerce.tests","Sun Oct 19 07:58:48 IST 2025","broken","Sun Oct 19 07:58:48 IST 2025","TestSearchCustomer","test_custsearch","",""
