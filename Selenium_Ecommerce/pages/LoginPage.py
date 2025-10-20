@@ -9,6 +9,7 @@ class LoginPage(BaseModule):
     PASSWORD_FIELD = (By.ID, "Password")
     LOGIN_BUTTON = (By.XPATH, "//button[contains(text(),'Log in')]")
     LOGOUT_LINK = (By.XPATH, "//a[contains(text(),'Logout')]")
+    remember_me_checkbox = (By.ID, "RememberMe")
 
     #  exact invalid message div from your HTML
     ERROR_DIV = (By.XPATH, "//div[@class='message-error validation-summary-errors']")
@@ -22,6 +23,10 @@ class LoginPage(BaseModule):
         print(f" Trying login: {email} / {password}")
         self.enter_text(*self.EMAIL_FIELD, email)
         self.enter_text(*self.PASSWORD_FIELD, password)
+
+        remember_me = self.driver.find_element(*self.remember_me_checkbox)
+        if not remember_me.is_selected():
+            remember_me.click()
         self.click_element(*self.LOGIN_BUTTON)
 
         try:

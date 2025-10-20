@@ -1,8 +1,11 @@
 import shutil
+import time
 
 import pytest
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -143,6 +146,8 @@ def login_fixture(setup):
     driver = setup
     login_page = LoginPage(driver)
     driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F")
+
+
     login_page.login("admin@yourstore.com", "admin")
 
     dashboard = DashboardPage(driver)
