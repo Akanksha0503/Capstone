@@ -33,20 +33,14 @@ jobs:
           sudo apt install -y google-chrome-stable firefox
 
       # Install Microsoft Edge & EdgeDriver
-      - name: Install Edge (browser + driver)
+      - name: Install EdgeDriver from GitHub release
         if: matrix.browser == 'edge'
         run: |
-          sudo apt update
-          sudo apt install -y software-properties-common apt-transport-https wget unzip
-          wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-          sudo apt update
-          sudo apt install -y microsoft-edge-stable
-          EDGE_VERSION=$(microsoft-edge --version | awk '{print $3}')
-          wget https://msedgedriver.azureedge.net/$EDGE_VERSION/edgedriver_linux64.zip
+          wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.36.0/edgedriver_linux64.zip
           unzip edgedriver_linux64.zip
           sudo mv msedgedriver /usr/bin/msedgedriver
           msedgedriver --version
+      
       
       
       
