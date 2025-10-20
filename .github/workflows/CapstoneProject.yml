@@ -46,15 +46,23 @@ jobs:
           unzip allure.zip -d /opt/allure
           sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
           allure --version
+<<<<<<< HEAD
       # token
       - name: Set WDM token
         run: echo "WDM_GITHUB_TOKEN=${{ secrets.WDM_GITHUB_TOKEN }}" >> $GITHUB_ENV
+=======
+      
+>>>>>>> f5e4ccb39cabb4e190cfb49c7d162b883ae026dc
 
 
       # 6️⃣ Run Selenium tests
       - name: Run Selenium tests
+<<<<<<< HEAD
         env:
           WDM_GITHUB_TOKEN: ${{ secrets.WDM_GITHUB_TOKEN }}
+=======
+
+>>>>>>> f5e4ccb39cabb4e190cfb49c7d162b883ae026dc
         run: |
           pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/allure-results --html=Selenium_Ecommerce/Output/reports/login_report.html
 

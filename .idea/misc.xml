@@ -3,5 +3,9 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.13 (PyCharmMiscProject)" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 virtualenv at C:\Users\Ascendion\PycharmProjects\Capstone Project\.venv" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (Capstone Project)" project-jdk-type="Python SDK" />
+>>>>>>> f5e4ccb39cabb4e190cfb49c7d162b883ae026dc
 </project>
