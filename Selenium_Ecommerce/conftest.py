@@ -1,3 +1,4 @@
+import os
 import shutil
 import time
 
@@ -26,7 +27,8 @@ GRID_URL = "http://localhost:4444/wd/hub"
 # ------------------------------------------------------------------
 
 
-
+# Set GitHub token to avoid API rate limits when downloading GeckoDriver
+os.environ["WDM_GITHUB_TOKEN"] = "<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>"
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -124,8 +126,8 @@ def setup(request):
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
             else webdriver.Edge(
-                #service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
-                service=EdgeService(EdgeChromiumDriverManager().install()), options=options
+                service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
+                #service=EdgeService(EdgeChromiumDriverManager().install()), options=options
             )
         )
 
