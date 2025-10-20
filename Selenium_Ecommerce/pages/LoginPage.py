@@ -23,27 +23,27 @@ class LoginPage(BaseModule):
 
     def login(self, email, password):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
+        global email_field, password_field
         print(f" Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
         # Ensure page fully loaded
-        try:
-            self.wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
-        except TimeoutException:
-            print(" Page did not load completely.")
-            self.take_screenshot("test_login","test_login")
-            return "none"
+        for attempt in range(2):
+            try:
+                self.wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+                email_field = self.wait.until(EC.visibility_of_element_located(self.EMAIL_FIELD))
+                password_field = self.wait.until(EC.visibility_of_element_located(self.PASSWORD_FIELD))
+                break
+            except TimeoutException:
+                print(f"Attempt {attempt + 1}: Page/elements not ready, refreshing...")
+                self.driver.refresh()
+                if attempt == 1:
+                    self.take_screenshot("test_login","login")
+                    return "none"
 
-        try:
-            email_field = self.wait.until(EC.visibility_of_element_located(self.EMAIL_FIELD))
-            email_field.clear()
-            email_field.send_keys(email)
-
-            password_field = self.wait.until(EC.visibility_of_element_located(self.PASSWORD_FIELD))
-            password_field.clear()
-            password_field.send_keys(password)
-        except TimeoutException:
-            print(" Login fields not visible — page may not have loaded correctly.")
-            return "none"
+        email_field.clear()
+        email_field.send_keys(email)
+        password_field.clear()
+        password_field.send_keys(password)
 
         # Handle 'Remember Me'
         try:
