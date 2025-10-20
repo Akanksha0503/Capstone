@@ -125,7 +125,7 @@ def setup(request):
             if use_grid
             else webdriver.Edge(
                 #service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
-                service=EdgeService(EdgeChromiumDriverManager().install()), options=options
+                service=EdgeService("/usr/local/bin/msedgedriver"), options=options
             )
         )
 
