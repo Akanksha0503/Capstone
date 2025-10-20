@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -47,21 +48,26 @@ class LoginPage(BaseModule):
         except NoSuchElementException:
             print(" 'Remember Me' checkbox not found — continuing anyway.")
 
-            # Click the login button
-            try:
-                self.click_element(*self.LOGIN_BUTTON)
-            except Exception as e:
-                print(f" Login button click failed: {e}")
-                return "none"
+            # Wait for login button to be clickable
+        try:
+            login_btn = self.wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
+            ActionChains(self.driver).move_to_element(login_btn).pause(0.3).click(login_btn).perform()
+            print(" Clicked the Login button successfully.")
+        except Exception as e:
+            print(f" Failed to click the Login button: {e}")
+            self.driver.take_screenshot("test_login","login_click_error.png")
+            return "none"
 
-            # Wait for Dashboard or error message
-            try:
-                self.wait.until(
-                    lambda d: "Dashboard" in d.title or d.find_elements(*self.ERROR_DIV)
-                )
-            except TimeoutException:
-                print(" Timeout: neither Dashboard nor error message appeared.")
-                return "none"
+        # Wait for Dashboard or error message
+        try:
+            self.wait.until(
+                lambda d: "Dashboard" in d.title or d.find_elements(*self.ERROR_DIV)
+            )
+        except TimeoutException:
+            print(" Timeout: neither Dashboard nor error message appeared.")
+            return "none"
+
         #  Success Case
         if "Dashboard" in self.driver.title:
             print(" Login successful.")

@@ -32,6 +32,11 @@ jobs:
         sudo apt update
         sudo apt install -y google-chrome-stable
 
+    - name: Install Microsoft Edge and EdgeDriver
+      run: |
+        choco install microsoft-edge --ignore-checksums -y
+        choco install edgedriver --ignore-checksums -y
+
     #  FIXED: Manual Allure CLI install (works on Ubuntu 24.04+)
     - name: Install Allure CLI
       run: |
