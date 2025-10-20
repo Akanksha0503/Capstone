@@ -25,8 +25,13 @@ class LoginPage(BaseModule):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
         print(f" Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
-        # Wait until page fully loads before interacting
-        self.wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+        # Ensure page fully loaded
+        try:
+            self.wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+        except TimeoutException:
+            print(" Page did not load completely.")
+            self.take_screenshot("test_login","test_login")
+            return "none"
 
         try:
             email_field = self.wait.until(EC.visibility_of_element_located(self.EMAIL_FIELD))
@@ -66,6 +71,7 @@ class LoginPage(BaseModule):
             )
         except TimeoutException:
             print(" Timeout: neither Dashboard nor error message appeared.")
+            self.take_screenshot("test_login","dashboard")
             return "none"
 
         #  Success Case
