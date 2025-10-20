@@ -26,12 +26,6 @@ GRID_URL = "http://localhost:4444/wd/hub"
 #  Pytest CLI options
 # ------------------------------------------------------------------
 
-
-# Set GitHub token to avoid API rate limits when downloading GeckoDriver
-#WDM_GITHUB_TOKEN = "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"
-
-
-
 def pytest_addoption(parser):
     parser.addoption(
         "--browser", action="store", default="chrome,firefox,edge", help="Browser to use: chrome, edge, firefox"
