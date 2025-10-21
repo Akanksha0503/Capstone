@@ -60,27 +60,27 @@ jobs:
         env:
           DISPLAY: :99
         run: |
-          pytest Selenium_Ecommerce/tests/test_custsearch.py -v -s 
+          pytest Selenium_Ecommerce/tests/test_login.py -v -s 
 
 
 #      # 6️⃣ Run Selenium tests
 #      - name: Run Selenium tests
 #
 #        run: |
-#          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-custsearch/allure-results --html=Selenium_Ecommerce/Output/reports/report-custsearch/login_report.html
+#          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
         with:
           name: test-screenshots
-          path: Selenium_Ecommerce/Output/screenshots/test_custsearch/
+          path: Selenium_Ecommerce/Output/screenshots/test_login/
 
       # 7️⃣ Upload raw Allure results
       - name: Upload raw Allure results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-${{ matrix.browser }}
-          path: Selenium_Ecommerce/Output/reports/report-custsearch/allure-results
+          path: Selenium_Ecommerce/Output/reports/report-login/allure-results
 
       # 8️⃣ Upload HTML report
       - name: Upload HTML report
@@ -92,8 +92,8 @@ jobs:
       # 9️⃣ Generate Allure report
       - name: Generate Allure Report
         run: |
-          allure generate Selenium_Ecommerce/Output/reports/report-custsearch/allure-results \
-            -o Selenium_Ecommerce/Output/reports/report-custsearch/allure-report --clean
+          allure generate Selenium_Ecommerce/Output/reports/report-login/allure-results \
+            -o Selenium_Ecommerce/Output/reports/report-login/allure-report --clean
 
       # 🔟 Upload generated Allure report
       - name: Upload Allure report
@@ -101,7 +101,7 @@ jobs:
         if: always()
         with:
           name: allure-report-${{ matrix.browser }}
-          path: Selenium_Ecommerce/Output/reports/report-custsearch/allure-report
+          path: Selenium_Ecommerce/Output/reports/report-login/allure-report
           retention-days: 7
 
   deploy-allure:
