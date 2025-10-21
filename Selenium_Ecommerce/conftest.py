@@ -183,10 +183,9 @@ def setup(request):
         options.add_argument("--remote-debugging-port=9222")
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument(
-            "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.207 Safari/537.36"
-        )
+        options.add_argument("--disable-software-rasterizer")
+        options.add_argument("--single-process")
+        options.add_argument("--start-maximized")
 
         if headless:
             options.add_argument("--headless=new")
@@ -209,15 +208,21 @@ def setup(request):
         if headless:
             options.add_argument("--headless")
 
-        driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
-
+        # driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
+        #
+        # driver = (
+        #     webdriver.Remote(command_executor=GRID_URL, options=options)
+        #     if use_grid
+        #     else webdriver.Firefox(
+        #         service=FirefoxService(driver_path), options=options
+        #     )
         driver = (
             webdriver.Remote(command_executor=GRID_URL, options=options)
             if use_grid
-            else webdriver.Firefox(
-                service=FirefoxService(driver_path), options=options
-            )
+            else webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
         )
+
+
     elif browser.lower() == "edge":
         options = EdgeOptions()
         options.add_argument("--no-sandbox")
@@ -241,9 +246,12 @@ def setup(request):
     else:
         raise ValueError(f"Unsupported browser: {browser}")
 
+    if not headless:
+        driver.maximize_window()
+
     driver.set_page_load_timeout(40)
     driver.implicitly_wait(10)
-    driver.maximize_window()
+
     driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F")
 
     request.cls.driver = driver
