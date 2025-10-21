@@ -132,6 +132,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.core import driver
+
 from Selenium_Ecommerce.modules.BaseModule import BaseModule
 
 
@@ -178,8 +180,12 @@ class LoginPage(BaseModule):
             return "none"
 
         # Fill credentials
-        email_field = self.driver.find_element(*self.EMAIL_FIELD)
-        password_field = self.driver.find_element(*self.PASSWORD_FIELD)
+        email_field = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((self.EMAIL_FIELD))
+        )
+        password_field = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((self.PASSWORD_FIELD))
+        )
         email_field.clear()
         email_field.send_keys(email)
         password_field.clear()
