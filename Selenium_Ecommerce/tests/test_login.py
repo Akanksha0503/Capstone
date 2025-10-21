@@ -9,11 +9,22 @@ import time
 
 import allure
 import pytest
+from selenium import webdriver
 from selenium.common import TimeoutException, NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common import NoSuchElementException
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 # Page Object imports
 from Selenium_Ecommerce.pages.LoginPage import LoginPage
@@ -23,7 +34,79 @@ from Selenium_Ecommerce.utils.data_loader import load_test_data
 
 
 
+@pytest.fixture
+def setup(request):
+    browser = request.param
+    use_grid = request.config.getoption("--grid")
+    headless = request.config.getoption("--headless")
 
+    driver = None
+
+    if browser.lower() == "chrome":
+        options = ChromeOptions()
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")
+        if headless:
+            options.add_argument("--headless=new")
+
+        driver =  webdriver.Chrome(
+                service=ChromeService(ChromeDriverManager().install()), options=options
+            )
+
+
+    elif browser.lower() == "firefox":
+        options = FirefoxOptions()
+        options.add_argument("--width=1920")
+        options.add_argument("--height=1080")
+        options.add_argument("--disable-gpu")
+
+        if headless:
+            options.add_argument("--headless")
+
+        driver = webdriver.Firefox(
+                service=FirefoxService(GeckoDriverManager().install()), options=options
+            )
+
+        # if headless:
+        #     options.add_argument("--headless")
+        #
+        # driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
+        #
+        # driver = (
+        #     webdriver.Remote(command_executor=GRID_URL, options=options)
+        #     if use_grid
+        #     else webdriver.Firefox(
+        #         service=FirefoxService(driver_path), options=options
+        #     )
+        # )
+
+    elif browser.lower() == "edge":
+        options = EdgeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-infobars")
+        options.add_argument("--window-size=1920,1080")
+
+        if headless:
+            options.add_argument("--headless=new")
+
+        driver = webdriver.Edge(
+                service=EdgeService("C:/Drivers/msedgedriver.exe"), options=options
+                #service=EdgeService(EdgeChromiumDriverManager().install()), options=options
+            )
+
+
+    else:
+        raise ValueError(f" Unsupported browser: {browser}")
+
+    driver.maximize_window()
+    driver.implicitly_wait(10)
+    yield driver
+    driver.quit()
 
 # ---------------------------------------------------------------
 # Login Test Class — Uses Allure Reporting and Screenshot Capture
