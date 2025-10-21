@@ -165,52 +165,94 @@ class LoginPage(BaseModule):
         return False
 
     def login(self, email, password):
-        """Attempts login; returns 'success', 'invalid', or 'none'."""
+        """Attempts login; returns one of:
+           'success', 'invalid_email', 'no_account', 'wrong_credentials', or 'none'."""
         print(f"🔐 Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
+        dashboard_url = "https://admin-demo.nopcommerce.com/admin/"
+        email_error_elem = (By.ID, "Email-error")
+        error_div_elem = (By.CSS_SELECTOR, "div.message-error.validation-summary-errors")
+
+        # Ensure login form is ready
         if not self.wait_for_form_ready():
             return "none"
 
-        self.driver.find_element(*self.EMAIL_FIELD).send_keys(email)
-        self.driver.find_element(*self.PASSWORD_FIELD).send_keys(password)
+        # Fill credentials
+        email_field = self.driver.find_element(*self.EMAIL_FIELD)
+        password_field = self.driver.find_element(*self.PASSWORD_FIELD)
+        email_field.clear()
+        email_field.send_keys(email)
+        password_field.clear()
+        password_field.send_keys(password)
 
-        # Click login
-        login_btn = self.driver.find_element(*self.LOGIN_BUTTON)
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
-        login_btn.click()
-        print("✅ Clicked Login button.")
-
-        # Wait for either dashboard element or error
-        dashboard_elem = (By.CSS_SELECTOR, "div.content-header")  # adjust selector if needed
-        error_elem = (By.CSS_SELECTOR, "div.message-error")  # server-side
-        email_error_elem = (By.ID, "Email-error")  # client-side
-
+        # Toggle "Remember Me" checkbox
         try:
-            wait = WebDriverWait(self.driver, 20)
-            element = wait.until(
-                EC.any_of(
-                    EC.visibility_of_element_located(dashboard_elem),
-                    EC.visibility_of_element_located(error_elem),
-                    EC.visibility_of_element_located(email_error_elem),
-                )
-            )
+            remember_me = self.driver.find_element(*self.REMEMBER_ME)
+            if not remember_me.is_selected():
+                remember_me.click()
+        except NoSuchElementException:
+            print("ℹ️ Remember Me checkbox not found — skipping.")
 
-            if self.is_element_present(dashboard_elem):
-                print("✅ Login successful.")
-                return "success"
-            elif self.is_element_present(error_elem):
-                msg = self.driver.find_element(*error_elem).text.strip()
-                print(f"❌ Login failed: {msg}")
-                return "invalid"
-            elif self.is_element_present(email_error_elem):
-                msg = self.driver.find_element(*email_error_elem).text.strip()
-                print(f"❌ Client validation: {msg}")
-                return "invalid"
-
-        except TimeoutException:
-            print("⚠️ Login outcome not detected after wait.")
-            self.take_screenshot("test_login", "dashboard_not_loaded")
+        # Click the Login button
+        try:
+            login_btn = self.driver.find_element(*self.LOGIN_BUTTON)
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
+            try:
+                login_btn.click()
+                print("✅ Clicked Login button.")
+            except:
+                self.driver.execute_script("arguments[0].click();", login_btn)
+                print("✅ Clicked Login button (JS fallback).")
+        except Exception as e:
+            print(f"❌ Login button click failed: {e}")
+            self.take_screenshot("test_login", "login_click_error")
             return "none"
+
+        # Wait for either success or failure outcome
+        timeout = 25
+        poll_interval = 1
+        end_time = time.time() + timeout
+
+        while time.time() < end_time:
+            current_url = self.driver.current_url
+
+            # ✅ Success case: Dashboard loaded
+            if current_url.strip("/") == dashboard_url.strip("/"):
+                print("✅ Login successful — Dashboard loaded.")
+                return "success"
+
+            # ❌ Client-side validation: Missing email
+            try:
+                email_err = self.driver.find_element(*email_error_elem)
+                if email_err.is_displayed() and "Please enter your email" in email_err.text:
+                    print(f"❌ Validation error: {email_err.text.strip()}")
+                    self.take_screenshot("test_login", "invalid_email")
+                    return "invalid_email"
+            except NoSuchElementException:
+                pass
+
+            # ❌ Server-side errors
+            try:
+                err_block = self.driver.find_element(*error_div_elem)
+                if err_block.is_displayed():
+                    msg = err_block.text.strip()
+                    print(f"❌ Server error detected: {msg}")
+                    self.take_screenshot("test_login", "login_error")
+                    if "No customer account found" in msg:
+                        return "no_account"
+                    elif "The credentials provided are incorrect" in msg:
+                        return "wrong_credentials"
+                    else:
+                        return "invalid"
+            except NoSuchElementException:
+                pass
+
+            time.sleep(poll_interval)
+
+        # Timeout fallback
+        print("⚠️ Timeout: No known post-login condition detected.")
+        self.take_screenshot("test_login", "dashboard_not_loaded")
+        return "none"
 
     def logout(self):
         """Logs out from the system."""
