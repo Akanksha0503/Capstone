@@ -203,43 +203,38 @@ class LoginPage(BaseModule):
             self.take_screenshot("test_login", "login_click_error")
             return "none"
 
-        # Wait for either success or failure
-        max_wait = 25
-        poll_interval = 1
-        for _ in range(max_wait):
-            time.sleep(poll_interval)
-            current_url = self.driver.current_url
-            title = self.driver.title
+        dashboard_elem = (By.CSS_SELECTOR, "div.content-header")  # dashboard header
+        error_elem = (By.CSS_SELECTOR, "div.message-error")  # server-side error
+        email_error_elem = (By.ID, "Email-error")  # client-side
 
-            # Successful login
-            if "Dashboard" in title or "/admin/" in current_url:
+        try:
+            # Wait until either dashboard or error appears
+            wait = WebDriverWait(self.driver, 20)
+            element = wait.until(
+                EC.any_of(
+                    EC.visibility_of_element_located(dashboard_elem),
+                    EC.visibility_of_element_located(error_elem),
+                    EC.visibility_of_element_located(email_error_elem),
+                )
+            )
+
+            # Determine which one appeared
+            if self.is_element_present(dashboard_elem):
                 print("✅ Login successful.")
                 return "success"
-
-            # Server-side error detection
-            try:
-                error_elem = self.driver.find_element(*self.ERROR_DIV)
-                if error_elem.is_displayed():
-                    error_text = error_elem.text.strip()
-                    print(f"❌ Login failed. Error: {error_text}")
-                    self.take_screenshot("test_login", "login_invalid")
-                    return "invalid"
-            except NoSuchElementException:
-                pass
-
-        # Client-side validation (optional: empty email/password)
-        try:
-            email_error = self.driver.find_element(By.ID, "Email-error")
-            if email_error.is_displayed():
-                print(f"❌ Client-side validation: {email_error.text.strip()}")
-                self.take_screenshot("test_login", "login_client_error")
+            elif self.is_element_present(error_elem):
+                msg = self.driver.find_element(*error_elem).text.strip()
+                print(f"❌ Login failed: {msg}")
                 return "invalid"
-        except NoSuchElementException:
-            pass
+            elif self.is_element_present(email_error_elem):
+                msg = self.driver.find_element(*email_error_elem).text.strip()
+                print(f"❌ Client validation: {msg}")
+                return "invalid"
 
-        print("⚠️ Login outcome not detected after wait.")
-        self.take_screenshot("test_login", "dashboard_not_loaded")
-        return "none"
+        except TimeoutException:
+            print("⚠️ Login outcome not detected after wait.")
+            self.take_screenshot("test_login", "dashboard_not_loaded")
+            return "none"
 
     def logout(self):
         """Logs out from the system."""
