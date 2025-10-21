@@ -168,47 +168,24 @@ class LoginPage(BaseModule):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
         print(f"🔐 Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
-        # Ensure form is ready
         if not self.wait_for_form_ready():
             return "none"
 
-        # Fill credentials
-        email_field = self.driver.find_element(*self.EMAIL_FIELD)
-        password_field = self.driver.find_element(*self.PASSWORD_FIELD)
-        email_field.clear()
-        email_field.send_keys(email)
-        password_field.clear()
-        password_field.send_keys(password)
+        self.driver.find_element(*self.EMAIL_FIELD).send_keys(email)
+        self.driver.find_element(*self.PASSWORD_FIELD).send_keys(password)
 
-        # Toggle Remember Me
-        try:
-            remember_me = self.driver.find_element(*self.REMEMBER_ME)
-            if not remember_me.is_selected():
-                remember_me.click()
-        except NoSuchElementException:
-            print("ℹ️ Remember Me checkbox not found — skipping.")
+        # Click login
+        login_btn = self.driver.find_element(*self.LOGIN_BUTTON)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
+        login_btn.click()
+        print("✅ Clicked Login button.")
 
-        # Click Login button
-        try:
-            login_btn = self.driver.find_element(*self.LOGIN_BUTTON)
-            self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
-            try:
-                login_btn.click()
-                print("✅ Clicked Login button.")
-            except:
-                self.driver.execute_script("arguments[0].click();", login_btn)
-                print("✅ Clicked Login button (JS fallback).")
-        except Exception as e:
-            print(f"❌ Login button click failed: {e}")
-            self.take_screenshot("test_login", "login_click_error")
-            return "none"
-
-        dashboard_elem = (By.CSS_SELECTOR, "div.content-header")  # dashboard header
-        error_elem = (By.CSS_SELECTOR, "div.message-error")  # server-side error
+        # Wait for either dashboard element or error
+        dashboard_elem = (By.CSS_SELECTOR, "div.content-header")  # adjust selector if needed
+        error_elem = (By.CSS_SELECTOR, "div.message-error")  # server-side
         email_error_elem = (By.ID, "Email-error")  # client-side
 
         try:
-            # Wait until either dashboard or error appears
             wait = WebDriverWait(self.driver, 20)
             element = wait.until(
                 EC.any_of(
@@ -218,7 +195,6 @@ class LoginPage(BaseModule):
                 )
             )
 
-            # Determine which one appeared
             if self.is_element_present(dashboard_elem):
                 print("✅ Login successful.")
                 return "success"
