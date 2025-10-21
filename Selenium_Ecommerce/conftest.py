@@ -158,18 +158,20 @@ def setup(request):
     browser = request.config.getoption("--browser")
     if browser == "chrome":
         options = webdriver.ChromeOptions()
-        options.add_argument("--headless=new")  #  modern headless mode
+        options.add_argument("--headless=new")  # modern headless
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--window-size=1920,1080")
         options.add_argument("--disable-gpu")
-        options.add_argument("--remote-debugging-port=9222")
+        options.add_argument("--window-size=1920,1080")
         options.add_argument("--disable-extensions")
-        options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--disable-infobars")
+        options.add_argument("--remote-debugging-port=9222")
         options.add_argument("--ignore-certificate-errors")
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option("useAutomationExtension", False)
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_argument(
+            "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.207 Safari/537.36"
+        )
 
         driver = webdriver.Chrome(
             service=ChromeService(ChromeDriverManager().install()),
@@ -191,10 +193,10 @@ def setup(request):
     else:
         raise ValueError(f"Unsupported browser: {browser}")
 
-    driver.maximize_window()
-    driver.implicitly_wait(10)
     driver.set_page_load_timeout(40)
-    driver.get("https://admin-demo.nopcommerce.com/login")
+    driver.implicitly_wait(10)
+    driver.maximize_window()
+    driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F")
 
     request.cls.driver = driver
     yield driver
