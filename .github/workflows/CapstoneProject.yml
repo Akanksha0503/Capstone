@@ -60,7 +60,7 @@ jobs:
         env:
           DISPLAY: :99
         run: |
-          pytest Selenium_Ecommerce/tests/test_login.py -v -s 
+          pytest Selenium_Ecommerce/tests/test_login.py -v -s --browser firefox,chrome
 
 
 #      # 6️⃣ Run Selenium tests
