@@ -145,26 +145,32 @@ class LoginPage(BaseModule):
 
     def __init__(self, driver):
         super().__init__(driver)
+        # Increased default wait for CI reliability
         self.wait = WebDriverWait(driver, 20)
+
+    def wait_for_form_ready(self, max_attempts=3):
+        """Wait until the login form is fully ready."""
+        for attempt in range(max_attempts):
+            try:
+                self.wait.until(EC.visibility_of_element_located(self.EMAIL_FIELD))
+                self.wait.until(EC.visibility_of_element_located(self.PASSWORD_FIELD))
+                self.wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
+                print(f"✅ Login form ready on attempt {attempt + 1}")
+                return True
+            except TimeoutException:
+                print(f"⚠️ Attempt {attempt + 1}: Login form not ready, refreshing...")
+                self.take_screenshot("test_login", f"login_page_not_ready_attempt{attempt + 1}")
+                self.driver.refresh()
+                time.sleep(2 * (attempt + 1))
+        return False
 
     def login(self, email, password):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
         print(f"🔐 Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
         # Ensure form is ready
-        for attempt in range(3):
-            try:
-                self.wait.until(EC.presence_of_element_located(self.EMAIL_FIELD))
-                self.wait.until(EC.presence_of_element_located(self.PASSWORD_FIELD))
-                print(f"✅ Login form ready on attempt {attempt + 1}")
-                break
-            except TimeoutException:
-                print(f"⚠️ Attempt {attempt + 1}: Login form not ready, refreshing...")
-                self.take_screenshot("test_login", f"login_page_not_ready_attempt{attempt + 1}")
-                self.driver.refresh()
-                time.sleep(2 * (attempt + 1))
-                if attempt == 2:
-                    return "none"
+        if not self.wait_for_form_ready():
+            return "none"
 
         # Fill credentials
         email_field = self.driver.find_element(*self.EMAIL_FIELD)
@@ -184,12 +190,13 @@ class LoginPage(BaseModule):
 
         # Click Login button
         try:
-            login_btn = self.wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
+            login_btn = self.driver.find_element(*self.LOGIN_BUTTON)
             self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
             try:
                 login_btn.click()
                 print("✅ Clicked Login button.")
             except:
+                # fallback for headless / tricky environments
                 self.driver.execute_script("arguments[0].click();", login_btn)
                 print("✅ Clicked Login button (JS fallback).")
         except Exception as e:
@@ -197,12 +204,12 @@ class LoginPage(BaseModule):
             self.take_screenshot("test_login", "login_click_error")
             return "none"
 
-        # Wait for either dashboard or error
+        # Wait for either dashboard or error message
         try:
             WebDriverWait(self.driver, 15).until(
                 EC.any_of(
                     EC.title_contains("Dashboard"),
-                    lambda d: bool(d.find_elements(*self.ERROR_DIV)),  # ✅ now returns bool
+                    EC.presence_of_element_located(self.ERROR_DIV),
                     EC.url_contains("/admin/")
                 )
             )
@@ -211,16 +218,18 @@ class LoginPage(BaseModule):
             self.take_screenshot("test_login", "dashboard_not_loaded")
             return "none"
 
-        # Analyze outcome
+        # Determine outcome
         current_url = self.driver.current_url
         title = self.driver.title
         print(f"🌐 Page title after login: {title}")
         print(f"📍 Current URL after login: {current_url}")
 
-        if "Dashboard" in title or "admin/" in current_url:
+        # Successful login
+        if "Dashboard" in title or "/admin/" in current_url:
             print("✅ Login successful.")
             return "success"
 
+        # Login failed
         if self.is_element_present(self.ERROR_DIV):
             try:
                 error_text = self.driver.find_element(*self.ERROR_DIV).text.strip()
