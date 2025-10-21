@@ -196,7 +196,6 @@ class LoginPage(BaseModule):
                 login_btn.click()
                 print("✅ Clicked Login button.")
             except:
-                # fallback for headless / tricky environments
                 self.driver.execute_script("arguments[0].click();", login_btn)
                 print("✅ Clicked Login button (JS fallback).")
         except Exception as e:
@@ -204,43 +203,42 @@ class LoginPage(BaseModule):
             self.take_screenshot("test_login", "login_click_error")
             return "none"
 
-        # Wait for either dashboard or error message
-        try:
-            WebDriverWait(self.driver, 15).until(
-                EC.any_of(
-                    EC.title_contains("Dashboard"),
-                    EC.presence_of_element_located(self.ERROR_DIV),
-                    EC.url_contains("/admin/")
-                )
-            )
-        except TimeoutException:
-            print("⏱️ Timeout: Dashboard or error message not detected.")
-            self.take_screenshot("test_login", "dashboard_not_loaded")
-            return "none"
+        # Wait for either success or failure
+        max_wait = 25
+        poll_interval = 1
+        for _ in range(max_wait):
+            time.sleep(poll_interval)
+            current_url = self.driver.current_url
+            title = self.driver.title
 
-        # Determine outcome
-        current_url = self.driver.current_url
-        title = self.driver.title
-        print(f"🌐 Page title after login: {title}")
-        print(f"📍 Current URL after login: {current_url}")
+            # Successful login
+            if "Dashboard" in title or "/admin/" in current_url:
+                print("✅ Login successful.")
+                return "success"
 
-        # Successful login
-        if "Dashboard" in title or "/admin/" in current_url:
-            print("✅ Login successful.")
-            return "success"
-
-        # Login failed
-        if self.is_element_present(self.ERROR_DIV):
+            # Server-side error detection
             try:
-                error_text = self.driver.find_element(*self.ERROR_DIV).text.strip()
-            except Exception:
-                error_text = "(error text not found)"
-            print(f"❌ Login failed. Error: {error_text}")
-            self.take_screenshot("test_login", "login_invalid")
-            return "invalid"
+                error_elem = self.driver.find_element(*self.ERROR_DIV)
+                if error_elem.is_displayed():
+                    error_text = error_elem.text.strip()
+                    print(f"❌ Login failed. Error: {error_text}")
+                    self.take_screenshot("test_login", "login_invalid")
+                    return "invalid"
+            except NoSuchElementException:
+                pass
 
-        print("⚠️ Unexpected login result — neither success nor error visible.")
-        self.take_screenshot("test_login", "unexpected_result")
+        # Client-side validation (optional: empty email/password)
+        try:
+            email_error = self.driver.find_element(By.ID, "Email-error")
+            if email_error.is_displayed():
+                print(f"❌ Client-side validation: {email_error.text.strip()}")
+                self.take_screenshot("test_login", "login_client_error")
+                return "invalid"
+        except NoSuchElementException:
+            pass
+
+        print("⚠️ Login outcome not detected after wait.")
+        self.take_screenshot("test_login", "dashboard_not_loaded")
         return "none"
 
     def logout(self):
