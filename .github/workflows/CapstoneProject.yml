@@ -50,11 +50,17 @@ jobs:
           sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
           allure --version
 
-      - name: Install XVFB
-        run: sudo apt-get install xvfb
+      - name: Install xvfb
+        run: sudo apt-get install -y xvfb
 
-      - name: Run tests with XVFB
-        run: xvfb-run -a pytest Selenium_Ecommerce/tests/test_login.py --browser chrome
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1920x1080x24 &
+
+      - name: Run tests
+        env:
+          DISPLAY: :99
+        run: |
+          pytest Selenium_Ecommerce/tests/test_login.py -v -s
 
 
 #      # 6️⃣ Run Selenium tests
