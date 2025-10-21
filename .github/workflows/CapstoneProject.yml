@@ -61,7 +61,7 @@ jobs:
 #          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/allure-results --html=Selenium_Ecommerce/Output/reports/login_report.html
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-screenshots
           path: Selenium_Ecommerce/Output/screenshots/test_login/
