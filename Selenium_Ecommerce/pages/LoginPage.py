@@ -132,8 +132,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.core import driver
-
 from Selenium_Ecommerce.modules.BaseModule import BaseModule
 
 
@@ -166,6 +164,18 @@ class LoginPage(BaseModule):
                 time.sleep(2 * (attempt + 1))
         return False
 
+    def wait_for_login_form(driver, timeout=20):
+        """Wait until login form fields are visible and enabled."""
+        email_field = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.ID, "Email"))
+        )
+        password_field = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.ID, "Password"))
+        )
+        login_button = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
+        )
+        return email_field, password_field, login_button
     def login(self, email, password):
         """Attempts login; returns one of:
            'success', 'invalid_email', 'no_account', 'wrong_credentials', or 'none'."""
@@ -180,12 +190,8 @@ class LoginPage(BaseModule):
             return "none"
 
         # Fill credentials
-        email_field = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((self.EMAIL_FIELD))
-        )
-        password_field = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((self.PASSWORD_FIELD))
-        )
+        email_field = self.driver.find_element(*self.EMAIL_FIELD)
+        password_field = self.driver.find_element(*self.PASSWORD_FIELD)
         email_field.clear()
         email_field.send_keys(email)
         password_field.clear()
