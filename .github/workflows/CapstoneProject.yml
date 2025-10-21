@@ -47,12 +47,18 @@ jobs:
           sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
           allure --version
 
+      - name: Install XVFB
+        run: sudo apt-get install xvfb
 
-      # 6️⃣ Run Selenium tests
-      - name: Run Selenium tests
+      - name: Run tests with XVFB
+        run: xvfb-run -a pytest Selenium_Ecommerce/tests/test_login.py --browser chrome
 
-        run: |
-          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/allure-results --html=Selenium_Ecommerce/Output/reports/login_report.html
+
+#      # 6️⃣ Run Selenium tests
+#      - name: Run Selenium tests
+#
+#        run: |
+#          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/allure-results --html=Selenium_Ecommerce/Output/reports/login_report.html
 
       # 7️⃣ Upload raw Allure results
       - name: Upload raw Allure results
