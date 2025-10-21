@@ -148,7 +148,7 @@ GRID_URL = "http://localhost:4444/wd/hub"
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--browser", action="store", default="chrome,firefox,edge", help="Browser to use: chrome, edge, firefox"
+        "--browser", action="store", default="chrome", help="Browser to use: chrome, edge, firefox"
     )
     parser.addoption(
         "--grid", action="store_true", help="Run tests on Selenium Grid"
@@ -172,6 +172,7 @@ def setup(request):
     use_grid = request.config.getoption("--grid")
     headless = request.config.getoption("--headless")
 
+    driver=None
     if browser.lower() == "chrome":
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
@@ -207,6 +208,8 @@ def setup(request):
         options.add_argument("--height=1080")
         if headless:
             options.add_argument("--headless")
+        options.set_preference("dom.webdriver.enabled", False)
+        options.set_preference("useAutomationExtension", False)
 
         # driver_path = r"C:\Users\Ascendion\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe"
         #
@@ -246,8 +249,8 @@ def setup(request):
     else:
         raise ValueError(f"Unsupported browser: {browser}")
 
-    if not headless:
-        driver.maximize_window()
+
+    driver.maximize_window()
 
     driver.set_page_load_timeout(40)
     driver.implicitly_wait(10)
