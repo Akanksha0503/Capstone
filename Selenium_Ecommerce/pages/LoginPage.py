@@ -134,13 +134,14 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from Selenium_Ecommerce.modules.BaseModule import BaseModule
 
+
 class LoginPage(BaseModule):
     EMAIL_FIELD = (By.ID, "Email")
     PASSWORD_FIELD = (By.ID, "Password")
     LOGIN_BUTTON = (By.XPATH, "//button[contains(text(),'Log in')]")
     LOGOUT_LINK = (By.XPATH, "//a[contains(text(),'Logout')]")
-    remember_me_checkbox = (By.ID, "RememberMe")
-    ERROR_DIV = (By.XPATH, "//div[@class='message-error validation-summary-errors']")
+    REMEMBER_ME = (By.ID, "RememberMe")
+    ERROR_DIV = (By.CSS_SELECTOR, "div.message-error.validation-summary-errors")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -148,17 +149,17 @@ class LoginPage(BaseModule):
 
     def login(self, email, password):
         """Attempts login; returns 'success', 'invalid', or 'none'."""
-        print(f"Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
+        print(f"🔐 Trying login: {email or '[EMPTY EMAIL]'} / {password or '[EMPTY PASSWORD]'}")
 
-        # Retry logic for flaky page readiness
+        # Ensure form is ready
         for attempt in range(3):
             try:
                 self.wait.until(EC.presence_of_element_located(self.EMAIL_FIELD))
                 self.wait.until(EC.presence_of_element_located(self.PASSWORD_FIELD))
-                print(f"Login form ready on attempt {attempt + 1}")
+                print(f"✅ Login form ready on attempt {attempt + 1}")
                 break
             except TimeoutException:
-                print(f"Attempt {attempt + 1}: Login form not ready, refreshing...")
+                print(f"⚠️ Attempt {attempt + 1}: Login form not ready, refreshing...")
                 self.take_screenshot("test_login", f"login_page_not_ready_attempt{attempt + 1}")
                 self.driver.refresh()
                 time.sleep(2 * (attempt + 1))
@@ -173,50 +174,65 @@ class LoginPage(BaseModule):
         password_field.clear()
         password_field.send_keys(password)
 
-        # Handle 'Remember Me'
+        # Toggle Remember Me
         try:
-            remember_me = self.driver.find_element(*self.remember_me_checkbox)
+            remember_me = self.driver.find_element(*self.REMEMBER_ME)
             if not remember_me.is_selected():
                 remember_me.click()
         except NoSuchElementException:
-            print("Remember Me checkbox not found — continuing.")
+            print("ℹ️ Remember Me checkbox not found — skipping.")
 
-        # Click login button
+        # Click Login button
         try:
             login_btn = self.wait.until(EC.element_to_be_clickable(self.LOGIN_BUTTON))
             self.driver.execute_script("arguments[0].scrollIntoView(true);", login_btn)
             try:
                 login_btn.click()
-                print("Clicked Login button (normal click).")
+                print("✅ Clicked Login button.")
             except:
                 self.driver.execute_script("arguments[0].click();", login_btn)
-                print("Clicked Login button (JS fallback).")
+                print("✅ Clicked Login button (JS fallback).")
         except Exception as e:
-            print(f"Login button click failed: {e}")
+            print(f"❌ Login button click failed: {e}")
             self.take_screenshot("test_login", "login_click_error")
             return "none"
 
-        # Wait for Dashboard or error
+        # Wait for either dashboard or error
         try:
-            self.wait.until(lambda d: "Dashboard" in d.title or d.find_elements(*self.ERROR_DIV))
+            WebDriverWait(self.driver, 15).until(
+                EC.any_of(
+                    EC.title_contains("Dashboard"),
+                    EC.presence_of_element_located(self.ERROR_DIV),
+                    EC.url_contains("/admin/")
+                )
+            )
         except TimeoutException:
-            print("Timeout: Dashboard or error message not detected.")
+            print("⏱️ Timeout: Dashboard or error message not detected.")
             self.take_screenshot("test_login", "dashboard_not_loaded")
             return "none"
 
-        # Outcome
-        if "Dashboard" in self.driver.title:
-            print("Login successful.")
+        # Analyze outcome
+        current_url = self.driver.current_url
+        title = self.driver.title
+        print(f"🌐 Page title after login: {title}")
+        print(f"📍 Current URL after login: {current_url}")
+
+        if "Dashboard" in title or "admin/" in current_url:
+            print("✅ Login successful.")
             return "success"
-        elif self.is_element_present(self.ERROR_DIV):
-            error_text = self.driver.find_element(*self.ERROR_DIV).text.strip()
-            print(f"Login failed. Error: {error_text}")
+
+        if self.is_element_present(self.ERROR_DIV):
+            try:
+                error_text = self.driver.find_element(*self.ERROR_DIV).text.strip()
+            except Exception:
+                error_text = "(error text not found)"
+            print(f"❌ Login failed. Error: {error_text}")
             self.take_screenshot("test_login", "login_invalid")
             return "invalid"
-        else:
-            print("Unexpected login result.")
-            self.take_screenshot("test_login", "unexpected_result")
-            return "none"
+
+        print("⚠️ Unexpected login result — neither success nor error visible.")
+        self.take_screenshot("test_login", "unexpected_result")
+        return "none"
 
     def logout(self):
         """Logs out from the system."""
@@ -225,15 +241,13 @@ class LoginPage(BaseModule):
             self.driver.execute_script("arguments[0].scrollIntoView(true);", logout_btn)
             try:
                 logout_btn.click()
-                print("Logged out (normal click).")
+                print("✅ Logged out (normal click).")
             except:
                 self.driver.execute_script("arguments[0].click();", logout_btn)
-                print("Logged out (JS fallback).")
+                print("✅ Logged out (JS fallback).")
         except TimeoutException:
-            print("Logout link not clickable.")
+            print("⚠️ Logout link not clickable.")
             self.take_screenshot("test_logout", "logout_not_clickable")
         except Exception as e:
-            print(f"Logout error: {e}")
+            print(f"❌ Logout error: {e}")
             self.take_screenshot("test_logout", "logout_error")
-
-
