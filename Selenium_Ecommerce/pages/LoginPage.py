@@ -202,7 +202,7 @@ class LoginPage(BaseModule):
             WebDriverWait(self.driver, 15).until(
                 EC.any_of(
                     EC.title_contains("Dashboard"),
-                    EC.presence_of_element_located(self.ERROR_DIV),
+                    lambda d: bool(d.find_elements(*self.ERROR_DIV)),  # ✅ now returns bool
                     EC.url_contains("/admin/")
                 )
             )
