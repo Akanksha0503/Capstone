@@ -158,7 +158,7 @@ def setup(request):
     browser = request.config.getoption("--browser")
     if browser == "chrome":
         options = webdriver.ChromeOptions()
-        options.add_argument("--headless=new")  # modern headless
+        options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
@@ -182,7 +182,7 @@ def setup(request):
         from selenium.webdriver.firefox.service import Service as FirefoxService
         from webdriver_manager.firefox import GeckoDriverManager
         options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
+        options.add_argument("--headless=new")
         options.add_argument("--width=1920")
         options.add_argument("--height=1080")
         driver = webdriver.Firefox(
