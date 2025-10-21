@@ -142,6 +142,16 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import pytest
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser", action="store", default="chrome", help="Browser to use: chrome, firefox, edge"
+    )
+    parser.addoption(
+        "--headless", action="store_true", help="Run tests in headless mode"
+    )
+    parser.addoption(
+        "--grid", action="store_true", help="Run tests on Selenium Grid"
+    )
 
 @pytest.fixture()
 def setup(request):
