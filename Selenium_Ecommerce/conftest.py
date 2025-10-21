@@ -166,11 +166,12 @@ def pytest_generate_tests(metafunc):
         browsers = [b.strip() for b in metafunc.config.getoption("browser").split(",") if b.strip()]
         metafunc.parametrize("setup", browsers, indirect=True)
 
-@pytest.fixture()
+@pytest.fixture(params=["chrome","firefox"])
 def setup(request):
     browser=request.param
     use_grid = request.config.getoption("--grid")
-    headless = request.config.getoption("--headless")
+    #headless = request.config.getoption("--headless")
+    headless = os.getenv("GITHUB_ACTIONS") == "true"
 
     driver=None
     if browser.lower() == "chrome":

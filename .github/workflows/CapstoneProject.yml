@@ -30,14 +30,27 @@ jobs:
           pip install pytest selenium webdriver-manager allure-pytest pytest-xdist pytest-html openpyxl
 
       # 4️⃣ Install browsers
-      - name: Install Chrome & Firefox
+      - name: Install Google Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y wget gnupg unzip
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
           google-chrome --version
-          sudo snap install firefox
+
+      # ✅ Install Firefox
+      - name: Install Firefox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+          firefox --version
+
+      # ✅ Install additional dependencies for headless Firefox
+      - name: Install Firefox dependencies
+        run: sudo apt-get install -y xvfb libgtk-3-0 libdbus-glib-1-2 libxt6
+
 
       # 5️⃣ Install Allure CLI
       - name: Install Allure CLI
@@ -59,6 +72,7 @@ jobs:
       - name: Run tests
         env:
           DISPLAY: :99
+          GITHUB_ACTIONS: "true"
         run: |
           pytest Selenium_Ecommerce/tests/test_login.py -v -s --browser firefox,chrome
 
