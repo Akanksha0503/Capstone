@@ -140,13 +140,6 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-def pytest_addoption(parser):
-     parser.addoption(
-        "--browser", action="store", default="chrome,firefox,edge", help="Browser to use: chrome, edge, firefox"
-     )
-     parser.addoption(
-         "--headless", action="store_true", help="Run tests in headless mode"
-     )
 @pytest.fixture(params=["chrome", "firefox"], scope="class")
 def setup(request):
     """
@@ -176,8 +169,6 @@ def setup(request):
 
     elif browser.lower() == "firefox":
         options = webdriver.FirefoxOptions()
-        options.add_argument("--width=1920")
-        options.add_argument("--height=1080")
         if headless:
             options.add_argument("--headless")
             options.add_argument("--start-maximized")

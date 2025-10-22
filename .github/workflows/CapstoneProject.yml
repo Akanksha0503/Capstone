@@ -31,7 +31,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r Selenium_Ecommerce/requirements.txt
+        pip install -r Selenium_Ecommerce\requirements.txt
 
     - name: Install Allure CLI
       run: |
@@ -45,20 +45,20 @@ jobs:
         BROWSER: chrome
         CI: true
       run: |
-        pytest Selenium_Ecommerce/tests/test_login.py -v -s --browser chrome --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results
+        pytest Selenium_Ecommerce/tests/test_login.py -v -s --clean-alluredir --alluredir=reports/allure-results
       continue-on-error: true
 
     - name: Generate Allure Report
       if: always()
       run: |
-         allure generate Selenium_Ecommerce/Output/reports/report-login/allure-results -o Selenium_Ecommerce/Output/reports/report-login/allure-report --clean
+        allure generate reports/allure-results -o reports/allure-report --clean
 
     - name: Upload Allure Results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
-        path: Selenium_Ecommerce/Output/reports/report_login/allure-results
+        path: reports/allure-results
         retention-days: 30
 
     - name: Upload Allure Report
@@ -66,5 +66,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: allure-report
-        path: Selenium_Ecommerce/Output/reports/report_login/allure-report
+        path: reports/allure-report
         retention-days: 30
