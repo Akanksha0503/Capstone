@@ -2,60 +2,40 @@
 "
 Attempts to log in with each dataset entry.
 Supports multiple browsers and data formats.
-","16235","test_login_ddt[firefox-case3]","tests","Fri Oct 17 22:45:14 IST 2025","passed","Fri Oct 17 22:45:30 IST 2025","TestLoginLogout","test_login","",""
+","11726","test_login_ddt[chrome-case1]","tests","Wed Oct 22 12:03:15 IST 2025","passed","Wed Oct 22 12:03:27 IST 2025","TestLoginLogout","test_login","",""
 "
 Attempts to log in with each dataset entry.
 Supports multiple browsers and data formats.
-","15786","test_login_ddt[edge-case2]","tests","Fri Oct 17 22:46:16 IST 2025","passed","Fri Oct 17 22:46:32 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","29395","test_login_ddt[chrome-case1]","tests","Fri Oct 17 22:41:47 IST 2025","passed","Fri Oct 17 22:42:16 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","9909","test_login_ddt[edge-case0]","tests","Fri Oct 17 22:45:39 IST 2025","passed","Fri Oct 17 22:45:49 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","13611","test_login_ddt[firefox-case2]","tests","Fri Oct 17 22:44:44 IST 2025","passed","Fri Oct 17 22:44:58 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","16887","test_login_ddt[firefox-case1]","tests","Fri Oct 17 22:44:11 IST 2025","passed","Fri Oct 17 22:44:28 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","6453","test_login_ddt[firefox-case0]","tests","Fri Oct 17 22:43:52 IST 2025","passed","Fri Oct 17 22:43:58 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","15814","test_login_ddt[edge-case3]","tests","Fri Oct 17 22:46:37 IST 2025","passed","Fri Oct 17 22:46:53 IST 2025","TestLoginLogout","test_login","",""
+","712","test_login_ddt[firefox-case2]","tests","Wed Oct 22 12:04:15 IST 2025","passed","Wed Oct 22 12:04:15 IST 2025","TestLoginLogout","test_login","",""
 "
 Logs in with valid credentials and then logs out.
 Captures screenshots for both actions.
-","12076","test_logout_after_login[edge]","tests","Fri Oct 17 22:49:08 IST 2025","passed","Fri Oct 17 22:49:20 IST 2025","TestLoginLogout","test_login","",""
+","3281","test_logout_after_login[firefox]","tests","Wed Oct 22 12:04:36 IST 2025","passed","Wed Oct 22 12:04:39 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","4386","test_login_ddt[chrome-case0]","tests","Wed Oct 22 12:03:11 IST 2025","passed","Wed Oct 22 12:03:15 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","11173","test_login_ddt[chrome-case3]","tests","Wed Oct 22 12:03:28 IST 2025","passed","Wed Oct 22 12:03:39 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","20756","test_login_ddt[firefox-case3]","tests","Wed Oct 22 12:04:15 IST 2025","passed","Wed Oct 22 12:04:36 IST 2025","TestLoginLogout","test_login","",""
 "
 Logs in with valid credentials and then logs out.
 Captures screenshots for both actions.
-","13630","test_logout_after_login[chrome]","tests","Fri Oct 17 22:47:16 IST 2025","passed","Fri Oct 17 22:47:30 IST 2025","TestLoginLogout","test_login","",""
+","3587","test_logout_after_login[chrome]","tests","Wed Oct 22 12:03:39 IST 2025","passed","Wed Oct 22 12:03:43 IST 2025","TestLoginLogout","test_login","",""
 "
 Attempts to log in with each dataset entry.
 Supports multiple browsers and data formats.
-","15217","test_login_ddt[chrome-case3]","tests","Fri Oct 17 22:43:25 IST 2025","passed","Fri Oct 17 22:43:40 IST 2025","TestLoginLogout","test_login","",""
+","3296","test_login_ddt[firefox-case0]","tests","Wed Oct 22 12:03:50 IST 2025","passed","Wed Oct 22 12:03:54 IST 2025","TestLoginLogout","test_login","",""
 "
 Attempts to log in with each dataset entry.
 Supports multiple browsers and data formats.
-","12320","test_login_ddt[chrome-case0]","tests","Fri Oct 17 22:40:38 IST 2025","passed","Fri Oct 17 22:40:50 IST 2025","TestLoginLogout","test_login","",""
+","839","test_login_ddt[chrome-case2]","tests","Wed Oct 22 12:03:27 IST 2025","passed","Wed Oct 22 12:03:28 IST 2025","TestLoginLogout","test_login","",""
 "
 Attempts to log in with each dataset entry.
 Supports multiple browsers and data formats.
-","15537","test_login_ddt[edge-case1]","tests","Fri Oct 17 22:45:55 IST 2025","passed","Fri Oct 17 22:46:10 IST 2025","TestLoginLogout","test_login","",""
-"
-Logs in with valid credentials and then logs out.
-Captures screenshots for both actions.
-","79051","test_logout_after_login[firefox]","tests","Fri Oct 17 22:47:43 IST 2025","passed","Fri Oct 17 22:49:02 IST 2025","TestLoginLogout","test_login","",""
-"
-Attempts to log in with each dataset entry.
-Supports multiple browsers and data formats.
-","14263","test_login_ddt[chrome-case2]","tests","Fri Oct 17 22:42:58 IST 2025","passed","Fri Oct 17 22:43:12 IST 2025","TestLoginLogout","test_login","",""
+","21063","test_login_ddt[firefox-case1]","tests","Wed Oct 22 12:03:54 IST 2025","passed","Wed Oct 22 12:04:15 IST 2025","TestLoginLogout","test_login","",""
