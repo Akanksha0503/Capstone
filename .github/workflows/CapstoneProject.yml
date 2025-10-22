@@ -2,7 +2,7 @@
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main , develop ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -40,7 +40,7 @@ jobs:
         sudo ln -s /opt/allure-2.24.1/bin/allure /usr/bin/allure
         allure --version
 
-    - name: Run pytest for test_search_product
+    - name: Run pytest for test_login
       env:
         BROWSER: chrome
         CI: true
@@ -59,6 +59,14 @@ jobs:
       with:
         name: allure-results
         path: reports/allure-results
+        retention-days: 30
+
+    - name: Upload HTML report
+      uses: actions/upload-artifact@v4 # CHANGED FROM v3 to v4
+      if: always()
+      with:
+        name: HTML-report
+        path: reports/html-report
         retention-days: 30
 
     - name: Upload Allure Report
