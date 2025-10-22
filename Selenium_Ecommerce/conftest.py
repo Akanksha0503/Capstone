@@ -140,6 +140,17 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser", action="store", default="chrome,firefox,edge", help="Browser to use: chrome, edge, firefox"
+    )
+    parser.addoption(
+        "--grid", action="store_true", help="Run tests on Selenium Grid"
+    )
+    parser.addoption(
+        "--headless", action="store_true", help="Run tests in headless mode"
+    )
+
 @pytest.fixture(params=["chrome", "firefox"], scope="class")
 def setup(request):
     """
