@@ -133,6 +133,8 @@
 #     yield driver, dashboard
 
 import os
+
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -185,3 +187,20 @@ def setup(request):
     request.cls.driver = driver
     yield driver
     driver.quit()
+# Attach screenshots on failure to Allure report
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    if rep.when == 'call' and rep.failed:
+        driver = item.funcargs.get('driver') if hasattr(item, 'funcargs') else None
+        if not driver:
+            # Try alternative access
+            driver = item._request.funcargs.get('driver') if hasattr(item, '_request') else None
+        if driver:
+            try:
+                png = driver.get_screenshot_as_png()
+                allure.attach(png, name='screenshot', attachment_type=allure.attachment_type.PNG)
+            except Exception:
+                # don't raise in hook
+                pass
