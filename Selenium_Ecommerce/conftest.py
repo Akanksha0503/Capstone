@@ -140,6 +140,10 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+from Selenium_Ecommerce.pages.DashboardPage import DashboardPage
+from Selenium_Ecommerce.pages.LoginPage import LoginPage
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--browser", action="store", default="chrome,firefox,edge", help="Browser to use: chrome, edge, firefox"
@@ -158,7 +162,8 @@ def setup(request):
     Detects GitHub Actions for headless mode.
     """
     browser = request.param
-    headless = os.getenv("GITHUB_ACTIONS") == "true"
+    #headless = os.getenv("GITHUB_ACTIONS") == "true"
+    headless=request.config.getoption("--headless")
 
     driver = None
 
@@ -192,7 +197,21 @@ def setup(request):
 
     driver.set_page_load_timeout(60)
     driver.implicitly_wait(10)
-
+    driver.maximize_window()
     request.cls.driver = driver
     yield driver
     driver.quit()
+
+@pytest.fixture
+def login_fixture(setup):
+    """Reusable fixture for admin login"""
+    driver = setup
+    login_page = LoginPage(driver)
+    driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F")
+
+
+    login_page.login("admin@yourstore.com", "admin")
+
+    dashboard = DashboardPage(driver)
+    assert "Dashboard" in dashboard.get_title()
+    yield driver, dashboard
