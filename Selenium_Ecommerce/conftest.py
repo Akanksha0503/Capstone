@@ -30,7 +30,7 @@ def pytest_generate_tests(metafunc):
         browsers = [b.strip() for b in metafunc.config.getoption("browser").split(",") if b.strip()]
         metafunc.parametrize("setup", browsers, indirect=True)
 
-@pytest.fixture(param=["chrome","edge"])
+@pytest.fixture(params=["chrome","edge"] , scope="class")
 def setup(request):
     browser = request.param
     use_grid = request.config.getoption("--grid")
