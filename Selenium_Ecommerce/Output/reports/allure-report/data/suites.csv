@@ -1,0 +1,241 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","23106","test_search_product_by_name[chrome-case3]","tests","Wed Oct 22 19:45:51 IST 2025","passed","Wed Oct 22 19:46:14 IST 2025","TestProductsModule","test_products","",""
+"","2919","test_search_order_by_email[firefox-case2]","tests","Wed Oct 22 19:28:20 IST 2025","passed","Wed Oct 22 19:28:23 IST 2025","TestOrdersModule","test_orders","",""
+"","2190","test_search_order_by_email[firefox-case3]","tests","Wed Oct 22 19:28:58 IST 2025","passed","Wed Oct 22 19:29:00 IST 2025","TestOrdersModule","test_orders","",""
+"Verify admin can log in successfully.","18099","test_valid_admin_login[firefox]","tests","Wed Oct 22 18:58:23 IST 2025","passed","Wed Oct 22 18:58:41 IST 2025","TestKeywords","test_keyword","",""
+"Verify invalid login shows error message.","5169","test_invalid_login[firefox]","tests","Wed Oct 22 18:59:48 IST 2025","passed","Wed Oct 22 18:59:53 IST 2025","TestKeywords","test_keyword","",""
+"
+Verifies that a customer can be found by registered email.
+","2448","test_search_by_email[chrome-admin@yourstore.com]","tests","Wed Oct 22 18:29:22 IST 2025","passed","Wed Oct 22 18:29:25 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verify searching for a product.","13240","test_search_product[firefox]","tests","Wed Oct 22 19:02:15 IST 2025","passed","Wed Oct 22 19:02:28 IST 2025","TestKeywords","test_keyword","",""
+"Verifies customer search by Role.","2011","test_search_by_role[edge-case3]","tests","Wed Oct 22 18:56:26 IST 2025","passed","Wed Oct 22 18:56:28 IST 2025","TestSearchCustomer","test_custsearch","",""
+"","4984","test_search_order_by_email[edge-case3]","tests","Wed Oct 22 19:31:44 IST 2025","passed","Wed Oct 22 19:31:49 IST 2025","TestOrdersModule","test_orders","",""
+"
+Logs in with valid credentials and then logs out.
+Captures screenshots for both actions.
+","69261","test_logout_after_login[firefox]","tests","Wed Oct 22 19:10:47 IST 2025","passed","Wed Oct 22 19:11:57 IST 2025","TestLoginLogout","test_login","",""
+"Verifies customer search by Last Name.","3993","test_search_by_last_name[firefox-case0]","tests","Wed Oct 22 18:40:31 IST 2025","passed","Wed Oct 22 18:40:35 IST 2025","TestSearchCustomer","test_custsearch","",""
+"","3462","test_search_order_by_last_name[edge-case2]","tests","Wed Oct 22 19:40:24 IST 2025","passed","Wed Oct 22 19:40:27 IST 2025","TestOrdersModule","test_orders","",""
+"
+Logs in with valid credentials and then logs out.
+Captures screenshots for both actions.
+","14528","test_logout_after_login[chrome]","tests","Wed Oct 22 19:10:17 IST 2025","passed","Wed Oct 22 19:10:32 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","39152","test_login_ddt[edge-case3]","tests","Wed Oct 22 19:09:16 IST 2025","passed","Wed Oct 22 19:09:55 IST 2025","TestLoginLogout","test_login","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","26401","test_search_product_by_name[chrome-case2]","tests","Wed Oct 22 19:44:38 IST 2025","passed","Wed Oct 22 19:45:04 IST 2025","TestProductsModule","test_products","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","12142","test_add_customer_from_user[edge]","tests","Wed Oct 22 18:28:12 IST 2025","passed","Wed Oct 22 18:28:24 IST 2025","TestAddCustomer","test_custadd","",""
+"Enter Order ID, click Go, and assert order status.","4019","test_verify_order_status[edge-5]","tests","Wed Oct 22 19:22:33 IST 2025","passed","Wed Oct 22 19:22:37 IST 2025","TestOrdersModule","test_orders","",""
+"Verify searching for a product.","17764","test_search_product[chrome]","tests","Wed Oct 22 19:01:47 IST 2025","passed","Wed Oct 22 19:02:05 IST 2025","TestKeywords","test_keyword","",""
+"Enter Order ID, click Go, and assert order status.","3471","test_verify_order_status[firefox-2]","tests","Wed Oct 22 19:17:25 IST 2025","passed","Wed Oct 22 19:17:28 IST 2025","TestOrdersModule","test_orders","",""
+"","3103","test_search_order_by_last_name[chrome-case3]","tests","Wed Oct 22 19:35:16 IST 2025","passed","Wed Oct 22 19:35:19 IST 2025","TestOrdersModule","test_orders","",""
+"Enter Order ID, click Go, and assert order status.","3889","test_verify_order_status[firefox-4]","tests","Wed Oct 22 19:18:06 IST 2025","passed","Wed Oct 22 19:18:10 IST 2025","TestOrdersModule","test_orders","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","5768","test_search_product_by_name[firefox-case0]","tests","Wed Oct 22 19:47:48 IST 2025","passed","Wed Oct 22 19:47:53 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Role.","3087","test_search_by_role[edge-case0]","tests","Wed Oct 22 18:54:35 IST 2025","passed","Wed Oct 22 18:54:38 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","24069","test_add_customer[chrome-case0]","tests","Wed Oct 22 18:19:26 IST 2025","passed","Wed Oct 22 18:19:50 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","1561","test_login_ddt[firefox-case2]","tests","Wed Oct 22 19:07:05 IST 2025","passed","Wed Oct 22 19:07:07 IST 2025","TestLoginLogout","test_login","",""
+"Verify invalid login shows error message.","8043","test_invalid_login[chrome]","tests","Wed Oct 22 18:59:30 IST 2025","passed","Wed Oct 22 18:59:38 IST 2025","TestKeywords","test_keyword","",""
+"Verifies customer search by Role.","2464","test_search_by_role[edge-case2]","tests","Wed Oct 22 18:55:48 IST 2025","passed","Wed Oct 22 18:55:50 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","26346","test_search_product_by_name[chrome-case0]","tests","Wed Oct 22 19:41:44 IST 2025","passed","Wed Oct 22 19:42:10 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Role.","4733","test_search_by_role[edge-case4]","tests","Wed Oct 22 18:57:21 IST 2025","passed","Wed Oct 22 18:57:26 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","2077","test_search_by_first_name[chrome-case0]","tests","Wed Oct 22 18:32:35 IST 2025","passed","Wed Oct 22 18:32:37 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","8394","test_login_ddt[firefox-case0]","tests","Wed Oct 22 19:06:06 IST 2025","passed","Wed Oct 22 19:06:14 IST 2025","TestLoginLogout","test_login","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","11151","test_add_customer_from_user[chrome]","tests","Wed Oct 22 18:26:22 IST 2025","passed","Wed Oct 22 18:26:33 IST 2025","TestAddCustomer","test_custadd","",""
+"Verify navigation to Orders page.","17698","test_open_orders_module[firefox]","tests","Wed Oct 22 19:00:35 IST 2025","broken","Wed Oct 22 19:00:53 IST 2025","TestKeywords","test_keyword","",""
+"","4115","test_search_order_by_email[firefox-case0]","tests","Wed Oct 22 19:27:02 IST 2025","passed","Wed Oct 22 19:27:06 IST 2025","TestOrdersModule","test_orders","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","27035","test_search_product_by_name[edge-case1]","tests","Wed Oct 22 19:52:32 IST 2025","passed","Wed Oct 22 19:52:59 IST 2025","TestProductsModule","test_products","",""
+"","3965","test_search_order_by_last_name[chrome-case0]","tests","Wed Oct 22 19:33:11 IST 2025","passed","Wed Oct 22 19:33:15 IST 2025","TestOrdersModule","test_orders","",""
+"","2715","test_search_order_by_email[firefox-case1]","tests","Wed Oct 22 19:27:46 IST 2025","passed","Wed Oct 22 19:27:49 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by Role.","6956","test_search_by_role[firefox-case1]","tests","Wed Oct 22 18:50:40 IST 2025","passed","Wed Oct 22 18:50:47 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","41327","test_search_product_by_name[edge-case2]","tests","Wed Oct 22 19:53:53 IST 2025","passed","Wed Oct 22 19:54:34 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Role.","3555","test_search_by_role[chrome-case1]","tests","Wed Oct 22 18:45:27 IST 2025","passed","Wed Oct 22 18:45:30 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","14666","test_add_customer[firefox-case0]","tests","Wed Oct 22 18:22:27 IST 2025","passed","Wed Oct 22 18:22:42 IST 2025","TestAddCustomer","test_custadd","",""
+"","5064","test_search_order_by_email[chrome-case3]","tests","Wed Oct 22 19:26:08 IST 2025","passed","Wed Oct 22 19:26:13 IST 2025","TestOrdersModule","test_orders","",""
+"Verify navigation to Orders page.","25167","test_open_orders_module[edge]","tests","Wed Oct 22 19:01:10 IST 2025","passed","Wed Oct 22 19:01:35 IST 2025","TestKeywords","test_keyword","",""
+"","3688","test_search_order_by_last_name[edge-case0]","tests","Wed Oct 22 19:39:02 IST 2025","passed","Wed Oct 22 19:39:05 IST 2025","TestOrdersModule","test_orders","",""
+"Verify searching for a product.","17717","test_search_product[edge]","tests","Wed Oct 22 19:02:37 IST 2025","passed","Wed Oct 22 19:02:55 IST 2025","TestKeywords","test_keyword","",""
+"Verifies customer search by Role.","3766","test_search_by_role[firefox-case0]","tests","Wed Oct 22 18:49:51 IST 2025","passed","Wed Oct 22 18:49:55 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","2505","test_search_by_first_name[edge-case1]","tests","Wed Oct 22 18:36:56 IST 2025","passed","Wed Oct 22 18:36:58 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Enter Order ID, click Go, and assert order status.","5983","test_verify_order_status[edge-1]","tests","Wed Oct 22 19:20:00 IST 2025","passed","Wed Oct 22 19:20:06 IST 2025","TestOrdersModule","test_orders","",""
+"","2908","test_search_order_by_last_name[firefox-case1]","tests","Wed Oct 22 19:36:26 IST 2025","passed","Wed Oct 22 19:36:28 IST 2025","TestOrdersModule","test_orders","",""
+"Enter Order ID, click Go, and assert order status.","7596","test_verify_order_status[chrome-2]","tests","Wed Oct 22 19:14:20 IST 2025","passed","Wed Oct 22 19:14:28 IST 2025","TestOrdersModule","test_orders","",""
+"","2953","test_search_order_by_email[chrome-case1]","tests","Wed Oct 22 19:23:46 IST 2025","passed","Wed Oct 22 19:23:49 IST 2025","TestOrdersModule","test_orders","",""
+"Enter Order ID, click Go, and assert order status.","3223","test_verify_order_status[chrome-5]","tests","Wed Oct 22 19:16:28 IST 2025","passed","Wed Oct 22 19:16:31 IST 2025","TestOrdersModule","test_orders","",""
+"","4448","test_search_order_by_last_name[chrome-case1]","tests","Wed Oct 22 19:34:03 IST 2025","passed","Wed Oct 22 19:34:07 IST 2025","TestOrdersModule","test_orders","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","22569","test_login_ddt[firefox-case3]","tests","Wed Oct 22 19:07:19 IST 2025","passed","Wed Oct 22 19:07:42 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","8450","test_login_ddt[edge-case0]","tests","Wed Oct 22 19:07:52 IST 2025","passed","Wed Oct 22 19:08:00 IST 2025","TestLoginLogout","test_login","",""
+"","2856","test_search_order_by_last_name[edge-case3]","tests","Wed Oct 22 19:40:55 IST 2025","passed","Wed Oct 22 19:40:58 IST 2025","TestOrdersModule","test_orders","",""
+"","4822","test_search_order_by_email[chrome-case2]","tests","Wed Oct 22 19:24:36 IST 2025","passed","Wed Oct 22 19:24:41 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by Role.","1591","test_search_by_role[edge-case1]","tests","Wed Oct 22 18:55:08 IST 2025","passed","Wed Oct 22 18:55:10 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","3652","test_search_by_role[chrome-case2]","tests","Wed Oct 22 18:46:42 IST 2025","passed","Wed Oct 22 18:46:46 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds a new customer with randomly generated email.
+Used to verify that customer creation works end-to-end.
+","5988","test_add_customer_from_user[firefox]","tests","Wed Oct 22 18:26:59 IST 2025","passed","Wed Oct 22 18:27:05 IST 2025","TestAddCustomer","test_custadd","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","27512","test_search_product_by_name[chrome-case4]","tests","Wed Oct 22 19:46:50 IST 2025","passed","Wed Oct 22 19:47:18 IST 2025","TestProductsModule","test_products","",""
+"Enter Order ID, click Go, and assert order status.","4748","test_verify_order_status[firefox-5]","tests","Wed Oct 22 19:18:54 IST 2025","passed","Wed Oct 22 19:18:58 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by Last Name.","3472","test_search_by_last_name[chrome-case1]","tests","Wed Oct 22 18:39:06 IST 2025","passed","Wed Oct 22 18:39:09 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","1421","test_search_by_first_name[edge-case0]","tests","Wed Oct 22 18:36:07 IST 2025","passed","Wed Oct 22 18:36:09 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","1494","test_search_by_first_name[firefox-case1]","tests","Wed Oct 22 18:35:16 IST 2025","passed","Wed Oct 22 18:35:18 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","16327","test_search_product_by_name[edge-case0]","tests","Wed Oct 22 19:51:47 IST 2025","passed","Wed Oct 22 19:52:03 IST 2025","TestProductsModule","test_products","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","32309","test_login_ddt[chrome-case0]","tests","Wed Oct 22 19:03:10 IST 2025","failed","Wed Oct 22 19:03:42 IST 2025","TestLoginLogout","test_login","",""
+"","2690","test_search_order_by_last_name[firefox-case0]","tests","Wed Oct 22 19:35:53 IST 2025","passed","Wed Oct 22 19:35:56 IST 2025","TestOrdersModule","test_orders","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","26080","test_search_product_by_name[edge-case4]","tests","Wed Oct 22 19:56:42 IST 2025","passed","Wed Oct 22 19:57:08 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Role.","4145","test_search_by_role[firefox-case4]","tests","Wed Oct 22 18:53:38 IST 2025","passed","Wed Oct 22 18:53:42 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","37959","test_login_ddt[chrome-case3]","tests","Wed Oct 22 19:05:09 IST 2025","passed","Wed Oct 22 19:05:47 IST 2025","TestLoginLogout","test_login","",""
+"","3048","test_search_order_by_last_name[edge-case1]","tests","Wed Oct 22 19:39:42 IST 2025","passed","Wed Oct 22 19:39:45 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by Role.","3200","test_search_by_role[chrome-case3]","tests","Wed Oct 22 18:48:01 IST 2025","passed","Wed Oct 22 18:48:04 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","33730","test_search_product_by_name[chrome-case1]","tests","Wed Oct 22 19:43:08 IST 2025","passed","Wed Oct 22 19:43:41 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Last Name.","1401","test_search_by_last_name[edge-case0]","tests","Wed Oct 22 18:42:24 IST 2025","passed","Wed Oct 22 18:42:25 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","3922","test_search_by_role[firefox-case2]","tests","Wed Oct 22 18:51:42 IST 2025","passed","Wed Oct 22 18:51:46 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","4488","test_search_product_by_name[firefox-case3]","tests","Wed Oct 22 19:50:28 IST 2025","passed","Wed Oct 22 19:50:32 IST 2025","TestProductsModule","test_products","",""
+"Verify admin can log in successfully.","14120","test_valid_admin_login[edge]","tests","Wed Oct 22 18:59:02 IST 2025","passed","Wed Oct 22 18:59:16 IST 2025","TestKeywords","test_keyword","",""
+"Verifies customer search by Last Name.","1619","test_search_by_last_name[edge-case1]","tests","Wed Oct 22 18:43:06 IST 2025","passed","Wed Oct 22 18:43:08 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verify navigation to Orders page.","12975","test_open_orders_module[chrome]","tests","Wed Oct 22 19:00:13 IST 2025","broken","Wed Oct 22 19:00:26 IST 2025","TestKeywords","test_keyword","",""
+"Enter Order ID, click Go, and assert order status.","5213","test_verify_order_status[chrome-1]","tests","Wed Oct 22 19:12:57 IST 2025","passed","Wed Oct 22 19:13:02 IST 2025","TestOrdersModule","test_orders","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","6157","test_login_ddt[edge-case2]","tests","Wed Oct 22 19:08:55 IST 2025","passed","Wed Oct 22 19:09:01 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","6485","test_login_ddt[chrome-case2]","tests","Wed Oct 22 19:04:45 IST 2025","passed","Wed Oct 22 19:04:52 IST 2025","TestLoginLogout","test_login","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","23811","test_login_ddt[firefox-case1]","tests","Wed Oct 22 19:06:32 IST 2025","passed","Wed Oct 22 19:06:56 IST 2025","TestLoginLogout","test_login","",""
+"","3684","test_search_order_by_email[edge-case0]","tests","Wed Oct 22 19:29:29 IST 2025","passed","Wed Oct 22 19:29:32 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by Role.","5370","test_search_by_role[firefox-case3]","tests","Wed Oct 22 18:52:45 IST 2025","passed","Wed Oct 22 18:52:50 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verify admin can log in successfully.","18723","test_valid_admin_login[chrome]","tests","Wed Oct 22 18:57:42 IST 2025","passed","Wed Oct 22 18:58:01 IST 2025","TestKeywords","test_keyword","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","28896","test_login_ddt[chrome-case1]","tests","Wed Oct 22 19:04:00 IST 2025","passed","Wed Oct 22 19:04:29 IST 2025","TestLoginLogout","test_login","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","6504","test_search_product_by_name[firefox-case4]","tests","Wed Oct 22 19:51:03 IST 2025","passed","Wed Oct 22 19:51:09 IST 2025","TestProductsModule","test_products","",""
+"Verifies customer search by Last Name.","648","test_search_by_last_name[chrome-case0]","tests","Wed Oct 22 18:37:39 IST 2025","passed","Wed Oct 22 18:37:39 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by First Name.","4292","test_search_by_first_name[chrome-case1]","tests","Wed Oct 22 18:33:50 IST 2025","passed","Wed Oct 22 18:33:54 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","26468","test_add_customer[firefox-case1]","tests","Wed Oct 22 18:23:21 IST 2025","failed","Wed Oct 22 18:23:48 IST 2025","TestAddCustomer","test_custadd","",""
+"","4403","test_search_order_by_email[edge-case2]","tests","Wed Oct 22 19:30:51 IST 2025","passed","Wed Oct 22 19:30:55 IST 2025","TestOrdersModule","test_orders","",""
+"Verify invalid login shows error message.","4208","test_invalid_login[edge]","tests","Wed Oct 22 19:00:02 IST 2025","passed","Wed Oct 22 19:00:06 IST 2025","TestKeywords","test_keyword","",""
+"","3202","test_search_order_by_last_name[firefox-case3]","tests","Wed Oct 22 19:37:58 IST 2025","passed","Wed Oct 22 19:38:01 IST 2025","TestOrdersModule","test_orders","",""
+"
+Logs in with valid credentials and then logs out.
+Captures screenshots for both actions.
+","9358","test_logout_after_login[edge]","tests","Wed Oct 22 19:12:06 IST 2025","passed","Wed Oct 22 19:12:15 IST 2025","TestLoginLogout","test_login","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","17574","test_add_customer[edge-case1]","tests","Wed Oct 22 18:25:18 IST 2025","passed","Wed Oct 22 18:25:35 IST 2025","TestAddCustomer","test_custadd","",""
+"","3008","test_search_order_by_last_name[chrome-case2]","tests","Wed Oct 22 19:34:45 IST 2025","passed","Wed Oct 22 19:34:48 IST 2025","TestOrdersModule","test_orders","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","38603","test_search_product_by_name[edge-case3]","tests","Wed Oct 22 19:55:24 IST 2025","passed","Wed Oct 22 19:56:03 IST 2025","TestProductsModule","test_products","",""
+"Enter Order ID, click Go, and assert order status.","2204","test_verify_order_status[firefox-1]","tests","Wed Oct 22 19:16:53 IST 2025","passed","Wed Oct 22 19:16:55 IST 2025","TestOrdersModule","test_orders","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","13447","test_add_customer[edge-case0]","tests","Wed Oct 22 18:24:34 IST 2025","passed","Wed Oct 22 18:24:47 IST 2025","TestAddCustomer","test_custadd","",""
+"","3254","test_search_order_by_last_name[firefox-case2]","tests","Wed Oct 22 19:37:10 IST 2025","passed","Wed Oct 22 19:37:13 IST 2025","TestOrdersModule","test_orders","",""
+"","4385","test_search_order_by_email[edge-case1]","tests","Wed Oct 22 19:30:12 IST 2025","passed","Wed Oct 22 19:30:16 IST 2025","TestOrdersModule","test_orders","",""
+"Verifies customer search by First Name.","1490","test_search_by_first_name[firefox-case0]","tests","Wed Oct 22 18:34:41 IST 2025","passed","Wed Oct 22 18:34:42 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Enter Order ID, click Go, and assert order status.","4206","test_verify_order_status[edge-4]","tests","Wed Oct 22 19:21:47 IST 2025","passed","Wed Oct 22 19:21:51 IST 2025","TestOrdersModule","test_orders","",""
+"","2155","test_search_order_by_email[chrome-case0]","tests","Wed Oct 22 19:23:07 IST 2025","passed","Wed Oct 22 19:23:10 IST 2025","TestOrdersModule","test_orders","",""
+"
+Verifies that a customer can be found by registered email.
+","1928","test_search_by_email[firefox-admin@yourstore.com]","tests","Wed Oct 22 18:30:26 IST 2025","passed","Wed Oct 22 18:30:28 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Enter Order ID, click Go, and assert order status.","5950","test_verify_order_status[chrome-4]","tests","Wed Oct 22 19:15:40 IST 2025","passed","Wed Oct 22 19:15:46 IST 2025","TestOrdersModule","test_orders","",""
+"
+Adds new customers using input data from external test files.
+Automatically captures screenshots and attaches to Allure.
+","22956","test_add_customer[chrome-case1]","tests","Wed Oct 22 18:20:50 IST 2025","passed","Wed Oct 22 18:21:13 IST 2025","TestAddCustomer","test_custadd","",""
+"Verifies customer search by Last Name.","2065","test_search_by_last_name[firefox-case1]","tests","Wed Oct 22 18:41:43 IST 2025","passed","Wed Oct 22 18:41:45 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Attempts to log in with each dataset entry.
+Supports multiple browsers and data formats.
+","32783","test_login_ddt[edge-case1]","tests","Wed Oct 22 19:08:10 IST 2025","passed","Wed Oct 22 19:08:43 IST 2025","TestLoginLogout","test_login","",""
+"Verifies customer search by Role.","3056","test_search_by_role[chrome-case0]","tests","Wed Oct 22 18:43:53 IST 2025","passed","Wed Oct 22 18:43:56 IST 2025","TestSearchCustomer","test_custsearch","",""
+"
+Verifies that a customer can be found by registered email.
+","1581","test_search_by_email[edge-admin@yourstore.com]","tests","Wed Oct 22 18:31:29 IST 2025","passed","Wed Oct 22 18:31:31 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Verifies customer search by Role.","3613","test_search_by_role[chrome-case4]","tests","Wed Oct 22 18:49:13 IST 2025","passed","Wed Oct 22 18:49:17 IST 2025","TestSearchCustomer","test_custsearch","",""
+"Enter Order ID, click Go, and assert order status.","4996","test_verify_order_status[edge-2]","tests","Wed Oct 22 19:21:00 IST 2025","passed","Wed Oct 22 19:21:05 IST 2025","TestOrdersModule","test_orders","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","7373","test_search_product_by_name[firefox-case1]","tests","Wed Oct 22 19:48:43 IST 2025","passed","Wed Oct 22 19:48:50 IST 2025","TestProductsModule","test_products","",""
+"
+Searches for products using data from external files.
+Captures screenshots only if search succeeds.
+","10277","test_search_product_by_name[firefox-case2]","tests","Wed Oct 22 19:49:37 IST 2025","passed","Wed Oct 22 19:49:47 IST 2025","TestProductsModule","test_products","",""
