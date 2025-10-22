@@ -1,139 +1,70 @@
-name: Capstone Project Tests
+
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, master, develop ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  selenium-tests:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser: [chrome, firefox]
 
     steps:
-      # 1️⃣ Checkout repo
-      - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      # 2️⃣ Setup Python
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-      # 3️⃣ Install dependencies
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r Selenium_Ecommerce/requirements.txt
-          pip install pytest selenium webdriver-manager allure-pytest pytest-xdist pytest-html openpyxl
+    - name: Set up Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
 
-      # 4️⃣ Install browsers
-      - name: Install Google Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg unzip
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          google-chrome --version
+    - name: Display Chrome version
+      run: chrome --version
 
-      # ✅ Install Firefox
-      - name: Install Firefox
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y firefox chromium-browser
-          firefox --version
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      # ✅ Install additional dependencies for headless Firefox
-      - name: Install Firefox dependencies
-        run: sudo apt-get install -y xvfb libgtk-3-0 libdbus-glib-1-2 libxt6
+    - name: Install Allure CLI
+      run: |
+        sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure-2.24.1.tgz
+        sudo tar -zxf allure-2.24.1.tgz -C /opt/
+        sudo ln -s /opt/allure-2.24.1/bin/allure /usr/bin/allure
+        allure --version
 
+    - name: Run pytest for test_search_product
+      env:
+        BROWSER: chrome
+        CI: true
+      run: |
+        pytest tests/test_search_product.py -v --alluredir=reports/allure-results
+      continue-on-error: true
 
-      # 5️⃣ Install Allure CLI
-      - name: Install Allure CLI
-        run: |
-          sudo apt-get install -y wget unzip
-          LATEST=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest \
-                   | grep "browser_download_url.*zip" | cut -d '"' -f 4)
-          wget -O allure.zip $LATEST
-          unzip allure.zip -d /opt/allure
-          sudo ln -s /opt/allure/*/bin/allure /usr/bin/allure
-          allure --version
+    - name: Generate Allure Report
+      if: always()
+      run: |
+        allure generate reports/allure-results -o reports/allure-report --clean
 
-      - name: Install xvfb
-        run: sudo apt-get install -y xvfb
+    - name: Upload Allure Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-results
+        path: reports/allure-results
+        retention-days: 30
 
-      - name: Start Xvfb
-        run: Xvfb :99 -screen 0 1920x1080x24 &
-
-      - name: Run tests
-        env:
-          DISPLAY: :99
-          GITHUB_ACTIONS: "true"
-        run: |
-          pytest Selenium_Ecommerce/tests/test_login.py -v -s --browser firefox,chrome
-
-
-#      # 6️⃣ Run Selenium tests
-#      - name: Run Selenium tests
-#
-#        run: |
-#          pytest Selenium_Ecommerce/tests/test_login.py -v -s --headless --browser ${{ matrix.browser }} --clean-alluredir --alluredir=Selenium_Ecommerce/Output/reports/report-login/allure-results --html=Selenium_Ecommerce/Output/reports/report-login/login_report.html
-
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-screenshots
-          path: Selenium_Ecommerce/Output/screenshots/test_login/
-
-      # 7️⃣ Upload raw Allure results
-      - name: Upload raw Allure results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results-${{ matrix.browser }}
-          path: Selenium_Ecommerce/Output/reports/report-login/allure-results
-
-      # 8️⃣ Upload HTML report
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-html-${{ matrix.browser }}
-          path: Selenium_Ecommerce/Output/reports/cust_search_report.html
-
-      # 9️⃣ Generate Allure report
-      - name: Generate Allure Report
-        run: |
-          allure generate Selenium_Ecommerce/Output/reports/report-login/allure-results \
-            -o Selenium_Ecommerce/Output/reports/report-login/allure-report --clean
-
-      # 🔟 Upload generated Allure report
-      - name: Upload Allure report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-report-${{ matrix.browser }}
-          path: Selenium_Ecommerce/Output/reports/report-login/allure-report
-          retention-days: 7
-
-  deploy-allure:
-    needs: selenium-tests
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download Allure report artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-report
-          path: ./allure-report
-
-      - name: Deploy report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
+    - name: Upload Allure Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-report
+        path: reports/allure-report
+        retention-days: 30

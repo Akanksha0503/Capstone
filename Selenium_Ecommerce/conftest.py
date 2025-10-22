@@ -176,11 +176,12 @@ def setup(request):
 
     elif browser.lower() == "firefox":
         options = webdriver.FirefoxOptions()
+        options.add_argument("--width=1920")
+        options.add_argument("--height=1080")
         if headless:
             options.add_argument("--headless")
             options.add_argument("--start-maximized")
-        options.add_argument("--width=1920")
-        options.add_argument("--height=1080")
+
 
         driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
         timeout=300
