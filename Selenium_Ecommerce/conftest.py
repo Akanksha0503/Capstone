@@ -131,7 +131,7 @@
 #     dashboard = DashboardPage(driver)
 #     assert "Dashboard" in dashboard.get_title()
 #     yield driver, dashboard
-
+ #Githhub
 import os
 
 import allure
@@ -187,5 +187,5 @@ def setup(request):
     request.cls.driver = driver
     yield driver
     driver.quit()
-# Attach screenshots on failure to Allure report
+
 
