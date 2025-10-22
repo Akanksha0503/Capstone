@@ -25,14 +25,15 @@ def pytest_addoption(parser):
         "--all-browsers", action="store_true", help="Run on all supported browsers"
     )
 
-def pytest_generate_tests(metafunc):
-    if "setup" in metafunc.fixturenames:
-        browsers = [b.strip() for b in metafunc.config.getoption("browser").split(",") if b.strip()]
-        metafunc.parametrize("setup", browsers, indirect=True)
+# def pytest_generate_tests(metafunc):
+#     if "setup" in metafunc.fixturenames:
+#         browsers = [b.strip() for b in metafunc.config.getoption("browser").split(",") if b.strip()]
+#         metafunc.parametrize("setup", browsers, indirect=True)
 
 @pytest.fixture(params=["chrome","edge"] , scope="class")
 def setup(request):
-    browser = request.param
+    #browser = request.param
+    browser = request.param.lower()
     use_grid = request.config.getoption("--grid")
     headless = request.config.getoption("--headless")
 
