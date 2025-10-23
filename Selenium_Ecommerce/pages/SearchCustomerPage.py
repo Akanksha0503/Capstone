@@ -46,20 +46,20 @@ class SearchCustomerPage(BaseModule):
         # Retry loop to handle stale elements
         for _ in range(3):
             try:
-                # 1️⃣ Click the Select2 container to open the dropdown
+                #  Click the Select2 container to open the dropdown
                 dropdown_container = wait.until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, "span.select2-selection.select2-selection--multiple"))
                 )
                 dropdown_container.click()
 
-                # 2️⃣ Wait for the input field inside dropdown
+                #  Wait for the input field inside dropdown
                 dropdown_input = wait.until(
                     EC.visibility_of_element_located((By.CSS_SELECTOR, "input.select2-search__field"))
                 )
                 dropdown_input.clear()
                 dropdown_input.send_keys(role_name)
 
-                # 3️⃣ Wait for the option to appear and click it
+                #  Wait for the option to appear and click it
                 role_option = wait.until(
                     EC.element_to_be_clickable(
                         (By.XPATH,
@@ -68,13 +68,13 @@ class SearchCustomerPage(BaseModule):
                 )
                 role_option.click()
 
-                # 4️⃣ Click the search button
+                #  Click the search button
                 search_button = wait.until(
                     EC.element_to_be_clickable(self.SEARCH_BUTTON)
                 )
                 search_button.click()
 
-                # 5️⃣ Return True if search results exist
+                #  Return True if search results exist
                 return len(self.driver.find_elements(*self.SEARCH_RESULTS)) > 0
 
             except StaleElementReferenceException:

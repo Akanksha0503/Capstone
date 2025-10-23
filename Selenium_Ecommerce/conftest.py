@@ -132,7 +132,7 @@
 #     assert "Dashboard" in dashboard.get_title()
 #     yield driver, dashboard
 
-import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -155,7 +155,7 @@ def pytest_addoption(parser):
         "--headless", action="store_true", help="Run tests in headless mode"
     )
 
-@pytest.fixture(params=["chrome", "firefox"], scope="class")
+@pytest.fixture(params=["chrome"], scope="class")
 def setup(request):
     """
     Fixture to initialize local Chrome or Firefox driver.

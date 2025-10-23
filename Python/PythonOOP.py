@@ -34,14 +34,12 @@ class BankAccount:
             print(f" Savings accounts require minimum ${min_deposit} deposit. Amount {amount:.2f} too small.")
             return False
 
-        if super().deposit(amount):  # Call parent deposit
-            interest = amount * self._interest_rate
-            self._balance += interest
-            print(
-                f"💰 Added interest: {interest:.2f} (at {self._interest_rate * 100:.1f}% rate). Total balance: {self.get_balance():.2f}")
-            print(f"   OOP: Overridden method adds child-specific behavior.")
-            return True
-        return False
+        print(f" BankAccount deposit called. Depositing ${amount:.2f}...")
+        self._balance += amount
+        print(f" Deposit successful. New balance: ${self._balance:.2f}")
+
+        print(f"   OOP: Overridden method adds child-specific behavior.")
+        return True
 
     def withdraw(self, amount: float) -> bool:
         """
